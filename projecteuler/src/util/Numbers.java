@@ -230,5 +230,25 @@ public class Numbers {
         return permutations;
     }
 
+    public static class Fraction implements Comparable<Fraction> {
+        private int numerator;
+        private int denominator;
+        private double value;
+        public Fraction(int numerator, int denominator){
+            this.numerator = numerator;
+            this.denominator = denominator;
+            this.value = this.numerator / (double) this.denominator;
+        }
+
+        @Override
+        public int compareTo(Fraction f) {
+            return Double.compare(this.value, f.value);
+        }
+
+        public String toString(){
+            return this.numerator + "/" + this.denominator;
+        }
+    }
+
 
 }

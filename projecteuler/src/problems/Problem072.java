@@ -1,13 +1,8 @@
 package problems;
 
 
-import util.Numbers;
-
-import java.awt.*;
-import java.util.*;
-
 //Ordered Fractions.
-public class Problem071 {
+public class Problem072 {
     private static final double limit = 3/7.0;
     private static double maxFraction = 0;
     private static int maxFractionNumerator = 0;
