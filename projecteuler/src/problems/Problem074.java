@@ -4,40 +4,30 @@ package problems;
 import util.Numbers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
-//Ordered Fractions.
+//Digit Factorial Chains.
 public class Problem074 {
-    private static ArrayList<Integer> primes = Numbers.generatePrimes(350);
-    private static long totalFractions = 0;
+    private static int[] digitFactorials = new int[10];
+    private static HashMap<Integer, Integer> factorialSums = new HashMap<>();
+    private static int length60loops = 0;
     public static void main(String[] args) {
-        for (int i = 2; i <= 5999; i++){
-            ArrayList<Integer> factors = getPrimeFactors(i);
-            for (int j = 2 * i + 1; j <= Math.min(3 * i, 12001) - 1; j++){
-                boolean relativelyPrime = true;
-                for (int factor : factors){
-                    if (j%factor == 0){
-                        relativelyPrime = false;
-                        break;
-                    }
-                }
-                if (relativelyPrime) totalFractions++;
+        for (int i = 0; i < 10; i++){
+            digitFactorials[i] = (int) Numbers.factorial(i);
+        }
+        for (int i = 3; i < 1000000; i++){
+            ArrayList<Integer> chain = new ArrayList<>(Collections.singletonList(i));
+            int next = String.valueOf(chain.get(chain.size()-1)).chars().map(e -> digitFactorials[Character.getNumericValue(e)]).sum();
+            while (!chain.contains(next)){
+                chain.add(next);
+                next = String.valueOf(chain.get(chain.size()-1)).chars().map(e -> digitFactorials[Character.getNumericValue(e)]).sum();
+            }
+            if (chain.size() == 60){
+                length60loops++;
             }
         }
-        System.out.println("The number of proper fractions between 1/2 and 1/3 with the denominator up to 12,000 is: " + totalFractions);
+        System.out.println("The number of factorial that produce a factorial sum chain of length 60 is: " + length60loops);
     }
 
-    private static ArrayList<Integer> getPrimeFactors(int num){
-        ArrayList<Integer> factors = new ArrayList<>();
-        for (Integer prime : primes) {
-            if (num == 1) break;
-            while (num % prime == 0) {
-                factors.add(prime);
-                num /= prime;
-            }
-        }
-        if (num != 1) {
-            factors.add(num);
-        }
-        return factors;
-    }
 }

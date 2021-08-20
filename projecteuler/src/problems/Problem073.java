@@ -6,7 +6,7 @@ import util.Numbers;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-//Ordered Fractions.
+//Counting Fractions in a Range.
 public class Problem073 {
     private static ArrayList<Integer> primes = Numbers.generatePrimes(350);
     private static long totalFractions = 0;

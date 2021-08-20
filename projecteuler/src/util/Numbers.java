@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 public class Numbers {
     private static ArrayList<Integer> cachedPrimes = new ArrayList<>();
+    private static HashMap<Integer, Integer> cachedPartitions = new HashMap<>();
 
     /**
      * Gets factors of an integer.
@@ -148,6 +149,28 @@ public class Numbers {
     }
 
     /**
+     * Partition function. Returns number of unique ways to partition a number. Uses the method described here: https://en.wikipedia.org/wiki/Partition_function_(number_theory)#Recurrence_relations
+     * @param num Number to be checked.
+     * @return The number of unique ways to partition num.
+     */
+    public static long partition(int num){
+        if (num == 0) return 1;
+        if (num < 0) return 0;
+        if (cachedPartitions.containsKey(num)){
+            return cachedPartitions.get(num);
+        }
+        int decrease = 1;
+        int totalSum = 0;
+        while (decrease * (3 * decrease - 1) / 2 <= num){
+            totalSum += (decrease%2 == 1 ? 1 : -1) * partition(num - decrease * (3 * decrease - 1) / 2);
+            totalSum += (decrease%2 == 1 ? 1 : -1) * partition(num - decrease * (3 * decrease - 1) / 2 - decrease);
+            decrease++;
+        }
+        cachedPartitions.put(num, totalSum);
+        return totalSum;
+    }
+
+    /**
      * Generates a list of primes from 1 to a limit.
      * @param limit Limit of where to stop searching for primes.
      * @return An ArrayList of Longs of the primes.
@@ -230,6 +253,9 @@ public class Numbers {
         return permutations;
     }
 
+    /**
+     * A fraction class, to represent a fraction with a numerator and denominator.
+     */
     public static class Fraction implements Comparable<Fraction> {
         private int numerator;
         private int denominator;
