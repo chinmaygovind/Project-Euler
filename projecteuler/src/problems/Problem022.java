@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Problem022 {
 
-    private static String names[] = new Scanner(Objects.requireNonNull(Problem022.class.getResourceAsStream("/problem22.txt"))).nextLine().split(",");
+    private static String names[] = new Scanner(Objects.requireNonNull(Problem022.class.getResourceAsStream("/problem022.txt"))).nextLine().split(",");
     private static int scoreSum = 0;
     public static void main(String[] args){
         Arrays.sort(names);

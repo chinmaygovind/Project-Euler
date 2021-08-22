@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 //Poker Hands.
 public class Problem054 {
-    private static Scanner hands = new Scanner(Objects.requireNonNull(Problem054.class.getResourceAsStream("/problem54.txt")));
+    private static Scanner hands = new Scanner(Objects.requireNonNull(Problem054.class.getResourceAsStream("/problem054.txt")));
     private static int player1wins = 0;
     public static void main(String[] args) {
         while (hands.hasNextLine()){

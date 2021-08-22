@@ -4,7 +4,7 @@ import java.util.*;
 
 //Diophantine Equation.
 public class Problem067 {
-    private static Scanner fileReader = new Scanner(Objects.requireNonNull(Problem067.class.getResourceAsStream("/problem67.txt")));
+    private static Scanner fileReader = new Scanner(Objects.requireNonNull(Problem067.class.getResourceAsStream("/problem067.txt")));
     private static int[][] triangle = new int[100][100];
     private static int answer = 0;
     public static void main(String[] args) {

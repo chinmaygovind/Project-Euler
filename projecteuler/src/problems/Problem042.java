@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 //Pandigital Prime.
 public class Problem042 {
-    private static String words[] = new Scanner(Objects.requireNonNull(Problem042.class.getResourceAsStream("/problem42.txt"))).nextLine().split(",");
+    private static String words[] = new Scanner(Objects.requireNonNull(Problem042.class.getResourceAsStream("/problem042.txt"))).nextLine().split(",");
     private static int triangleWords = 0;
     private static ArrayList<Integer> triangleNumbers = new ArrayList<>();
 

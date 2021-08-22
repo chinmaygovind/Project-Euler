@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 //XOR Decryption.
 public class Problem059 {
-    private static String[] asciiValues = new Scanner(Objects.requireNonNull(Problem059.class.getResourceAsStream("/problem59.txt"))).nextLine().split(",");
+    private static String[] asciiValues = new Scanner(Objects.requireNonNull(Problem059.class.getResourceAsStream("/problem059.txt"))).nextLine().split(",");
     private static ArrayList<Integer> encrypted =  new ArrayList<>();
     private static String decrypted;
     private static String key = "";
