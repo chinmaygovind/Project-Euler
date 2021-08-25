@@ -5,9 +5,9 @@ import problems.*;
 
 public class Timer {
     private static long timer;
-    public static void main(String args[]){
+    public static void main(String[] args){
         long startTime = System.currentTimeMillis();
-        Problem070.main(new String[]{});
+        Problem088.main(new String[]{});
         System.out.println("Runtime: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 

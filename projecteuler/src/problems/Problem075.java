@@ -13,7 +13,6 @@ public class Problem075 {
     private static final HashMap<Long, ArrayList<Long>> factorMap = new HashMap<>();
     private static int answer = 0;//15000 took 20447 ms
     public static void main(String[] args) {
-        Timer.startTimer();
         //fill out factor map
         for (long r = 2; r <= limit / 3; r+=2){
             factorMap.put(r*r/2, new ArrayList<>());

@@ -11,7 +11,6 @@ public class Problem078 {
     private static int answer = 2;
     private static HashMap<Integer, Integer> cachedPartitions = new HashMap<>();
     public static void main(String[] args) {
-        Timer.startTimer();
         while (coinPartition(5 * answer + 4) != 0){
             answer++;
         }
