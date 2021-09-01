@@ -5,10 +5,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * A utility class with lots of useful math methods.
+ */
 public class Numbers {
     private static ArrayList<Integer> cachedPrimes = new ArrayList<>();
     private static HashMap<Integer, Integer> cachedPartitions = new HashMap<>();
 
+    /**
+     * Generates prime cache up to a limit.
+     * @param limit Limit to generate primes up to.
+     */
+    public static void cachePrimes(int limit){
+        cachedPrimes = Numbers.generatePrimes(limit);
+    }
     /**
      * Gets factors of an integer.
      * @param num Integer that the method will find the factors of.
@@ -24,6 +34,28 @@ public class Numbers {
         return factors;
     }
 
+    /**
+     * Gets factors of an integer using the prime factorization.
+     * @param num Number to get factors of.
+     * @return An ArrayList of Integers of all the factors.
+     */
+    public static ArrayList<Integer> getFactors(int num, boolean useCached) {
+        if (cachedPrimes.size() == 0) Numbers.generateCachedPrimes(num);
+        ArrayList<Integer> primeFactors = Numbers.getPrimeFactors(num, true);
+        HashSet<Integer> factors = new HashSet<>();
+        for (int i = 0; i < Math.pow(2, primeFactors.size()); i++){
+            int newFactor = 1;
+            int temp = i;
+            int factorNum = primeFactors.size() - 1;
+            while (temp != 0){
+                if (temp%2 == 1) newFactor *= primeFactors.get(factorNum);
+                factorNum--;
+                temp /= 2;
+            }
+            factors.add(newFactor);
+        }
+        return new ArrayList<>(factors);
+    }
     /**
      * Calculates the factorial of an long (e.g. 5! (5 factorial) = 5 * 4 * 3 * 2 * 1)
      * @param num Long to calculate factorial of
@@ -60,24 +92,6 @@ public class Numbers {
         double discriminant = Math.sqrt(Math.pow(b, 2) - 4 * a * c);
         return new double[] {(-b + discriminant) / (2 * a),
                 (-b - discriminant) / (2 * a)};
-    }
-
-    /**
-     * Checks if a number is a pentagonal number.
-     * @param num Number to check if pentagonal.
-     * @return A boolean representing true if the number is pentagonal.
-     */
-    public static boolean isPentagonal(int num){
-        return (Numbers.solveQuadratic(3/2.0, -1/2.0, -num)[0]%1 == 0);
-    }
-
-    /**
-     * Checks if a number is a hexagonal number.
-     * @param num Number to check if hexagonal.
-     * @return A boolean representing true if the number is hexagonal.
-     */
-    private static boolean isHexagonal(int num){
-        return (Numbers.solveQuadratic(2, -1, -num)[0]%1 == 0);
     }
 
     /**
@@ -133,6 +147,27 @@ public class Numbers {
             }
         }
        return primeFactors;
+    }
+
+    /**
+     * Gets prime factors of a number using cached primes to save time. (e.g. 6 -> 2, 3)
+     * @param num Number to get prime factors of.
+     * @param useCached A boolean that indicates to use the cached primes.
+     * @return An ArrayList of Integers containing all the prime factors.
+     */
+    private static ArrayList<Integer> getPrimeFactors(int num, boolean useCached){
+        ArrayList<Integer> factors = new ArrayList<>();
+        for (Integer prime : cachedPrimes) {
+            if (num == 1) break;
+            while (num % prime == 0) {
+                factors.add(prime);
+                num /= prime;
+            }
+        }
+        if (num != 1) {
+            factors.add(num);
+        }
+        return factors;
     }
 
     /**
