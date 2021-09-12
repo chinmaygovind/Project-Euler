@@ -1,6 +1,7 @@
 package util;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -171,6 +172,36 @@ public class Numbers {
     }
 
     /**
+     * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
+     * @param a The greater of the two integers to take the GCF of.
+     * @param b The smaller of the two integers to take the GCF of.
+     * @return The GCF of a and b.
+     */
+    public static int GCF(int a, int b){
+        return b == 0 ? a : GCF(b, a % b);
+    }
+
+    /**
+     * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
+     * @param a The greater of the two integers to take the GCF of.
+     * @param b The smaller of the two integers to take the GCF of.
+     * @return The GCF of a and b.
+     */
+    public static long GCF(long a, long b){
+        return b == 0 ? a : GCF(b, a % b);
+    }
+
+    /**
+     * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
+     * @param a The greater of the two integers to take the GCF of.
+     * @param b The smaller of the two integers to take the GCF of.
+     * @return The GCF of a and b.
+     */
+    public static double GCF(double a, double b){
+        return b == 0 ? a : GCF(b, a % b);
+    }
+
+    /**
      * Euler's totient function. Returns numbers of integers below n that are relatively prime to n (gcd(n, m) will be 1).
      * @param num Number to compute totient of.
      * @return Number of integers below n that are relatively prime to n.
@@ -289,27 +320,12 @@ public class Numbers {
     }
 
     /**
-     * A fraction class, to represent a fraction with a numerator and denominator.
+     * Raw Digits. Gets raw digits of a double as a string, to avoid the scientific notation default.
+     * @param num Number to get digits of.
+     * @return A string of the digits of the number.
      */
-    public static class Fraction implements Comparable<Fraction> {
-        private int numerator;
-        private int denominator;
-        private double value;
-        public Fraction(int numerator, int denominator){
-            this.numerator = numerator;
-            this.denominator = denominator;
-            this.value = this.numerator / (double) this.denominator;
-        }
-
-        @Override
-        public int compareTo(Fraction f) {
-            return Double.compare(this.value, f.value);
-        }
-
-        public String toString(){
-            return this.numerator + "/" + this.denominator;
-        }
+    public static String rawDigits(double num){
+        return DecimalFormat.getInstance().format(num).replace(",", "");
     }
-
 
 }
