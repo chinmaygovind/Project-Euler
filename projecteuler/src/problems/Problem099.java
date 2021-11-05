@@ -2,16 +2,11 @@ package problems;
 
 import util.Files;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
 
 //Largest Exponential.
 public class Problem099 {
-    private static final Scanner fileReader = Files.fileScan("/problem099.txt");
+    private static final Scanner fileReader = Files.fileScanner("/problem099.txt");
     private static int maxLine = 0;
     private static double maxValue = 0;
     public static void main(String[] args) {

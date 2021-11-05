@@ -1,13 +1,12 @@
 package problems;
 
 import util.Files;
-import util.Numbers;
 
 import java.util.*;
 
 //Su Doku.
 public class Problem096 {
-    private static final Scanner fileReader = Files.fileScan("/problem096.txt");
+    private static final Scanner fileReader = Files.fileScanner("/problem096.txt");
     private static int[][][] grids = new int[50][9][9];
     private static int sum = 0;
     public static void main(String[] args) {

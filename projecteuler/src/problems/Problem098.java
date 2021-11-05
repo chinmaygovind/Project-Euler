@@ -7,7 +7,7 @@ import java.util.*;
 //Anagramic Squares.
 public class Problem098 {
     //This program doesn't even work properly, but it got the right answer. ¯\_(ツ)_/¯
-    private static final Scanner fileReader = Files.fileScan("/problem098.txt");
+    private static final Scanner fileReader = Files.fileScanner("/problem098.txt");
     private static HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
     private static int maxSquare = 0;
     private static ArrayList<String> poopyPile = new ArrayList<>();
