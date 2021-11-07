@@ -319,6 +319,17 @@ public class Numbers {
         return permutations;
     }
 
+    public static int decToBase(int dec, int base){
+        int converted = 0;
+        int digits = 0;
+        while (dec >= 1){
+            converted += (dec%base) * Math.pow(10, digits);
+            dec /= base;
+            digits++;
+        }
+        return converted;
+
+    }
     /**
      * Raw Digits. Gets raw digits of a double as a string, to avoid the scientific notation default.
      * @param num Number to get digits of.

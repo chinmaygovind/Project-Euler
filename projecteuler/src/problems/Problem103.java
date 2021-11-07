@@ -5,7 +5,6 @@ import util.Timer;
 
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //Special Subset Sums: Optimum
 public class Problem103 {
@@ -72,10 +71,11 @@ public class Problem103 {
             }
             return totalSubsets;
         } else {
-            return (checkSubset(s) ? new ArrayList<>(Collections.singletonList(s)) : null);
+            return (checkSpecialSumSet(s) ? new ArrayList<>(Collections.singletonList(s)) : null);
         }
     }
-    public static boolean checkSubset(List<Integer> s){
+
+    public static boolean checkSpecialSumSet(List<Integer> s){
         HashMap<Integer, ArrayList<Integer>> sums = new HashMap<>();
         for (int i = 0; i <= s.size(); i++) sums.put(i, new ArrayList<>());
         for (int mask = 0; mask < Math.pow(2, s.size()); mask++){
