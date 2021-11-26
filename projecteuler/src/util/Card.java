@@ -17,7 +17,7 @@ public class Card {
         HEARTS('♥'),
         SPADES('♠');
 
-        private char icon;
+        private final char icon;
         Suits (char icon){
             this.icon = icon;
         }

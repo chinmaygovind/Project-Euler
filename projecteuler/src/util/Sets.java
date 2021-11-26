@@ -15,6 +15,12 @@ public class Sets {
     public static int sum(List<Integer> l){
         return l.stream().mapToInt(Integer::intValue).sum();
     }
+    public static long sumLongs(List<Long> l){
+        return l.stream().mapToLong(Long::longValue).sum();
+    }
+    public static double sumDoubles(List<Double> l){
+        return l.stream().mapToDouble(Double::doubleValue).sum();
+    }
 
     /**
      * Find the max value of a list of integers.

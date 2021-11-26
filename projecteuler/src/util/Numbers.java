@@ -83,6 +83,21 @@ public class Numbers {
     }
 
     /**
+     * Choose Function. Calculates the number of ways to select k objects from n objects (n! / k! (n - k)!)/
+     * @param n Total Number of Objects as an Integer.
+     * @param k Number of Objects to be Selected, As An Integer.
+     * @return The total number of ways to choose k objects from n objects.
+     */
+    public static long choose(int n, int k) {
+        long total = 1;
+        for (int m = Math.max(n - k, k) + 1; m <= n; m++) {
+            total *= m;
+        }
+        total /= Numbers.factorial(Math.min(k, n - k));
+        return total;
+    }
+
+    /**
      * Solves a quadratic equation of the form ax^2 + bx + c = 0;
      * @param a The coefficient of x^2.
      * @param b The coefficient of x.
@@ -166,6 +181,48 @@ public class Numbers {
             }
         }
         if (num != 1) {
+            factors.add(num);
+        }
+        return factors;
+    }
+    public static ArrayList<Long> getPrimeFactors(long num, boolean useCached){
+        ArrayList<Long> factors = new ArrayList<>();
+        for (Integer prime : cachedPrimes) {
+            if (num == 1) break;
+            while (num % prime == 0) {
+                factors.add((long) prime);
+                num /= prime;
+            }
+        }
+        if (num != 1) {
+            factors.add(num);
+        }
+        return factors;
+    }
+    public static ArrayList<Long> getPrimeFactors(double num, boolean useCached){
+        ArrayList<Long> factors = new ArrayList<>();
+        for (Integer prime : cachedPrimes) {
+            if (num == 1) break;
+            while (num % prime == 0) {
+                factors.add((long) prime);
+                num /= prime;
+            }
+        }
+        if (num != 1) {
+            factors.add((long) num);
+        }
+        return factors;
+    }
+    public static ArrayList<BigInteger> getPrimeFactors(BigInteger num, boolean useCached){
+        ArrayList<BigInteger> factors = new ArrayList<>();
+        for (Integer prime : cachedPrimes) {
+            if (num.equals(BigInteger.ONE)) break;
+            while (num.mod(BigInteger.valueOf(prime)).equals(BigInteger.ZERO)) {
+                factors.add(BigInteger.valueOf(prime));
+                num = num.divide(BigInteger.valueOf(prime));
+            }
+        }
+        if (!num.equals(BigInteger.ONE)) {
             factors.add(num);
         }
         return factors;

@@ -4,55 +4,53 @@ package problems;
 import util.Numbers;
 import util.Timer;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 import static problems.Problem108.countSolutions;
 
 //Diophantine Reciprocals II.
 public class Problem110 {
-    //The number of solutions for n is the number of factors in n^2 / 2.
-    private static long n = 1;
-    private static long solutions = 1;
-    private static final int limit = 4000000;
     //61261200 seems to be smallest one for 8000 solutions.
-    private static final int[] factors = new int[1000];
+    private static final int[] factors = new int[5000];
+    private static int[] tempFactors;
     private static final ArrayList<Integer> primes = Numbers.generatePrimes(1000);
+    private static BigInteger n = BigInteger.ONE;
     public static void main(String[] args) {
-        while (numSolutions() < limit){
-            solutions = numSolutions();
-            System.out.println("n = " + n + ": " + numSolutions());
-            int bestIndexToUpgrade = 0;
-            double bestCost = 0;
-            //to find out what prime to multiply by that minimizes the number while maximizing the solutions...
-            for (Integer i : primes){
-                //cost = multiplicative increase in factors / number
-                double tempCost = Math.log(((double) 2 * factors[i] + 3) /(2 * factors[i] + 1)) / Math.log(i);
-                //System.out.println(i + ": " + tempCost);
-                if (tempCost > bestCost && (double) 2 * factors[i] + 3) /(2 * factors[i] + 1)) * solutions <= 2 * limit){
-                    bestCost = tempCost;
-                    bestIndexToUpgrade = i;
-                }
-                if (tempCost < bestCost && factors[i] == 0) break;
+        Numbers.generateCachedPrimes(1000000);
+        for (int i = 8000001; i < 8100000; i+=2) {
+            ArrayList<Long> factors = Numbers.getPrimeFactors(i, true);
+            if (factors.get(factors.size()-1) > 300) continue;
+            Collections.reverse(factors);
+            BigInteger potentialN = BigInteger.ONE;
+            for (int f = 0; f < factors.size(); f++) {
+                BigInteger power = BigInteger.ONE;
+                for (int k = 0; k < (factors.get(f)-1)/2; k++) power =  power.multiply(BigInteger.valueOf(primes.get(f)));
+                potentialN = potentialN.multiply(power);
             }
-            System.out.println("Multiplying by " + bestIndexToUpgrade);
-            factors[bestIndexToUpgrade]++;
-            n = 1;
-            for (int i = 0; i < 1000; i++){
-                if (factors[i] != 0) n *= Math.pow(i, factors[i]);
-            }
+            if (potentialN.compareTo(n) < 0 || n.equals(BigInteger.ONE)) n = potentialN;
         }
-        System.out.println("The least value of n that has over 4 million integer solutions for the equation 1/x + 1/y = 1/n is: " + n);
-        System.out.println("The number of solutions it has is: " + solutions);
-        System.out.println(Arrays.toString(factors));
+        System.out.println("The smallest value of n with over 4 million integer solutions for 1/x + 1/y = 1/n is: " + n);
     }
-    public static long numSolutions(){
-        int runningTotal = 1;
-        for (int i = 0; i < 1000; i++){
-            runningTotal *= factors[i] * 2 + 1;
+
+    public static long cheeseSolutions(){
+        long solutions = 1;
+        for (int factor : tempFactors) solutions *= (2L * factor) + 1;
+        return solutions/2 + 1;
+    }
+    public static long numSolutions(double n){
+        HashMap<Long, Integer> factors = new HashMap<>();
+        for (long i : Numbers.getPrimeFactors(n, true)){
+            if (!factors.containsKey(i)) factors.put(i, 1);
+            else factors.put(i, factors.get(i) + 1);
         }
-        return runningTotal / 2 + 1;
+        long solutions = 1;
+        for (Long i : factors.keySet()) solutions *= (2L * factors.get(i)) + 1;
+        return solutions/2 + 1;
     }
 
 }
