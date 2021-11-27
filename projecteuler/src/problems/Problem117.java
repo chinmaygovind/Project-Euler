@@ -13,6 +13,7 @@ public class Problem117 {
           //      countBlocks(5, 3, true) +
            //     countBlocks(5, 4, true)));
         System.out.println(countBlocks(50));
+
     }
 
     public static long countBlocks(int size) {

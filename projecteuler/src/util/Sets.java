@@ -1,5 +1,6 @@
 package util;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,11 @@ public class Sets {
     }
     public static double sumDoubles(List<Double> l){
         return l.stream().mapToDouble(Double::doubleValue).sum();
+    }
+    public static BigInteger sumBigIntegers(List<BigInteger> l) {
+        BigInteger sum = BigInteger.ZERO;
+        for (BigInteger i : l) sum = sum.add(i);
+        return sum;
     }
 
     /**
