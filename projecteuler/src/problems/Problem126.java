@@ -9,6 +9,8 @@ import java.util.List;
 
 //Cuboid Layers.
 public class Problem126 {
+    //this problem is free to jump into a well.
+    //i don't even know how i solved it i just messed with the numbers till it worked
     private static final int limit = 150;
     private static final int shellsLimit = 20000;
     public static void main(String[] args) {

@@ -28,6 +28,18 @@ public class Geometry {
     }
 
     /**
+     * Generates a list of hexagonal numbers, from the 1st to nth hexagonal number..
+     * @param n Length, the length of the list of hexagonal numbers (will generate up to nth hexagonal number)
+     * @return An ArrayList, containing the first n hexgagonal numbers.
+     */
+    public static ArrayList<Integer> generateHexagonals(int n) {
+        ArrayList<Integer> hexagonals = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            hexagonals.add(2 * i * i - i);
+        }
+        return hexagonals;
+    }
+    /**
      * Calculates area of a triangle using Heron's Formula.
      * @param a First side length of triangle.
      * @param b Second side length of triangle.

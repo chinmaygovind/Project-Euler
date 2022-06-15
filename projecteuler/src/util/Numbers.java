@@ -150,7 +150,7 @@ public class Numbers {
      * @return ArrayList of integers containing all the prime factors.
      */
     public static ArrayList<Integer> getPrimeFactors(int num){
-        if (cachedPrimes.size() < num/Math.log1p(num) + 5) generateCachedPrimes(num * 2);
+        if (cachedPrimes.size() == 0 || cachedPrimes.get(cachedPrimes.size()-1) < num) generateCachedPrimes(num * 2);
         ArrayList<Integer> primeFactors = new ArrayList<>();
         int temp = num;
         int divisor = 0;

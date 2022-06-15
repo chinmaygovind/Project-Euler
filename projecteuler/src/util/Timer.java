@@ -7,7 +7,7 @@ public class Timer {
     private static long timer;
     public static void main(String[] args){
         long startTime = System.currentTimeMillis();
-        Problem100.main(new String[]{});
+        Problem127.main(new String[]{});
         System.out.println("Runtime: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
