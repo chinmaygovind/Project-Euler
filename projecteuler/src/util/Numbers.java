@@ -412,4 +412,18 @@ public class Numbers {
         }
         return approximations.get(approximations.size()-1);
     }
+
+    /**
+     * Get Fibonacci. Generates an ArrayList of the first n fibonacci numbers (1, 1, 2, 3, 5, ...).
+     * @param terms The number of terms to generate.
+     * @return An ArrayList of Integers containing the first n fibonacci numbers.
+     */
+    public static ArrayList<Integer> getFibonacci(int terms) {
+        ArrayList<Integer> f = new ArrayList<>(Collections.singletonList(1));
+        f.add(1);
+        for (int i = 0; i < terms - 2; i++) {
+            f.add(f.get(f.size() - 2) + f.get(f.size() - 1));
+        }
+        return f;
+    }
 }
