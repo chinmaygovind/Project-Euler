@@ -31,6 +31,7 @@ public class Problem135 {
             if ((a+b)%4 != 0) continue;
             int diff = (a + b)/4;
             //x + d = a, 3d - x = b
+            //pick two numbers, a and b, for which b is int < 3a
             int x = a - diff;
             if (x > 0) {
                 sols.add(new Point(x, diff));

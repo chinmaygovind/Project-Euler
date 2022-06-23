@@ -1,8 +1,10 @@
 package util;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -396,4 +398,18 @@ public class Numbers {
         return DecimalFormat.getInstance().format(num).replace(",", "");
     }
 
+    /**
+     * The product log (Lambert W) function. Uses Newton's method approximation: https://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
+     * @param z the value to input into the product log (z = x * e^x)
+     * @return x, where x is the approximate solution to z = x * e^x
+     */
+    public static double productLog(double z) {
+        ArrayList<Double> approximations = new ArrayList<>(Collections.singletonList(2 * Math.log10(z)));
+        while (approximations.size() < 50) {
+            double w = approximations.get(approximations.size()-1);
+            double newW = w - (w * Math.exp(w) - z) / ((w + 1) * Math.exp(w));
+            approximations.add (newW);
+        }
+        return approximations.get(approximations.size()-1);
+    }
 }
