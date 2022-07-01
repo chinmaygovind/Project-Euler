@@ -1,12 +1,10 @@
 package util;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * A utility class with lots of useful math methods.
@@ -96,6 +94,14 @@ public class Numbers {
             total *= m;
         }
         total /= Numbers.factorial(Math.min(k, n - k));
+        return total;
+    }
+    public static BigInteger bigChoose(int n, int k) {
+        BigInteger total = BigInteger.ONE;
+        for (int m = Math.max(n - k, k) + 1; m <= n; m++) {
+            total = total.multiply(BigInteger.valueOf(m));
+        }
+        total = total.divide(Numbers.factorial((long) Math.min(k, n - k)));
         return total;
     }
 
@@ -425,5 +431,132 @@ public class Numbers {
             f.add(f.get(f.size() - 2) + f.get(f.size() - 1));
         }
         return f;
+    }
+
+    /**
+     * Solve Pell Equation. Finds the smallest integer solution (fundamental solution) of the equation x^2 - D * y^2 = 1.
+     * Implementation based upon: https://crypto.stanford.edu/pbc/notes/ep/pell.html
+     * @param D, an integer representing a non-square, positive integer.
+     * @return a Point(x, y), representing the smallest solution to the equation.
+     */
+    public static Point solvePellEquation(int D) {
+        //compute continued fraction expansion of D
+        ArrayList<Integer> P = new ArrayList<>();
+        ArrayList<Integer> Q = new ArrayList<>();
+        ArrayList<Integer> a = new ArrayList<>();
+        P.add(0); Q.add(1); a.add((int) Math.floor(Math.sqrt(D)));
+        P.add(a.get(0)); Q.add(D - a.get(0)*a.get(0));
+        int k = 0;
+        for (int n = 1; n < 100; n++) {
+            if (a.size() < 3 || !a.get(a.size() - 1).equals(a.get(1))) {
+                k = a.size() - 2;
+            }
+            if (n > 1) {
+                P.add(a.get(n - 1) * Q.get(n - 1) - P.get(n - 1));
+                Q.add((D - P.get(n)*P.get(n))/Q.get(n - 1));
+            }
+            a.add((int) Math.floor((double) (a.get(0) + P.get(n))/Q.get(n)));
+        }
+        //generate convergents, p and q
+        ArrayList<Integer> p = new ArrayList<>();
+        p.add(a.get(0)); p.add(a.get(0) * a.get(1) + 1);
+        ArrayList<Integer> q = new ArrayList<>();
+        q.add(1); q.add(a.get(1));
+        for (int n = 2; n < (k%2 == 0 ? 2 * k + 1 : k); n++) {
+            p.add(a.get(n) * p.get(n - 1) + p.get(n - 2));
+            q.add(a.get(n) * q.get(n - 1) + q.get(n - 2));
+        }
+        return new Point(p.get(p.size()-1), q.get(q.size()-1));
+    }
+
+    /**
+     * Solve General Pell Equation. Finds solutions of the equation x^2 - D * y^2 = N.
+     * Implementation based upon: https://crypto.stanford.edu/pbc/notes/ep/pell.html
+     * @param D, an integer representing a non-square, positive integer.
+     * @param N, an integer, assumes N^2 > D. (N^2 < D case doesn't work D:)
+     * @param sols, an integer, representing how many solutions to find for the equation.
+     * @return an ArrayList of Points, representing the fundamental solutions of the equation.
+     */
+    public static ArrayList<Point> solveGeneralPellEquation(int D, int N, int sols) {
+        Point resolvent = solvePellEquation(D);
+        int t = resolvent.x;
+        int u = resolvent.y;
+        ArrayList<Point> fundamentals = new ArrayList<>();
+        HashSet<Point> solutions = new HashSet<>();
+        //TODO: fix n^2 < D case
+        if (N * N > D) {
+            int L1 = (N > 0 ? 0 : (int) Math.sqrt(-N/ (double) D));
+            int L2 = (int) Math.ceil(Math.sqrt((N > 0 ? 1 : -1) * N * (t + (N > 0 ? -1 : + 1)) / (2.0 * D)));
+            for (int y = L1; y <= D*N; y++) {//+3 for good luck
+                int x2 = D * y * y + N;
+                if (Math.sqrt(x2) == Math.floor(Math.sqrt(x2))) {
+                    fundamentals.add(new Point((int) Math.sqrt(x2), y));
+                    fundamentals.add(new Point(-((int) Math.sqrt(x2)), y));
+                }
+            }
+
+        } else {
+            ArrayList<Integer> P = new ArrayList<>();
+            ArrayList<Integer> Q = new ArrayList<>();
+            ArrayList<Integer> a = new ArrayList<>();
+            P.add(0); Q.add(1); a.add((int) Math.floor(Math.sqrt(D)));
+            P.add(a.get(0)); Q.add(D - a.get(0)*a.get(0));
+            int k = 0;
+            for (int n = 1; n < 100; n++) {
+                if (a.size() < 3 || !a.get(a.size() - 1).equals(a.get(1))) {
+                    k = a.size() - 2;
+                }
+                if (n > 1) {
+                    P.add(a.get(n - 1) * Q.get(n - 1) - P.get(n - 1));
+                    Q.add((D - P.get(n)*P.get(n))/Q.get(n - 1));
+                }
+                a.add((int) Math.floor((double) (a.get(0) + P.get(n))/Q.get(n)));
+            }
+            //generate convergents, p and q
+            ArrayList<Integer> p = new ArrayList<>();
+            p.add(a.get(0)); p.add(a.get(0) * a.get(1) + 1);
+            ArrayList<Integer> q = new ArrayList<>();
+            q.add(1); q.add(a.get(1));
+            for (int n = 2; n < (k%2 == 0 ? 2 * k + 1 : k); n++) {
+                p.add(a.get(n) * p.get(n - 1) + p.get(n - 2));
+                q.add(a.get(n) * q.get(n - 1) + q.get(n - 2));
+                double f2 = (double) N / (p.get(n)*p.get(n) + q.get(n)*q.get(n));
+                if (Math.sqrt(f2) == Math.floor(Math.sqrt(f2)) || n == (k%2 == 0 ? 2 * k  : k - 1)) {
+                    fundamentals.add(new Point(p.get(n), q.get(n)));
+                }
+            }
+
+        }
+        //family of sols given by x + y*sqrtD = (r + s*sqrtD)(t + u*sqrtD)^n
+        //where (r, s) is on fundamentals list and (t, u) is resolvent
+        int n = 0;
+        while (solutions.size() < sols) {
+            for (Point rs : fundamentals) {
+                int r = rs.x;
+                int s = rs.y;
+                //get expansion of (t + u sqrtD)^n
+                int whole = (n == 0 ? 1 : 0);
+                int rad = 0;//implied sqrtD
+                if (n != 0) {
+                    for (int i = 0; i <= n; i++) {
+                        if (i % 2 == 0)
+                            whole += choose(n, i) * Math.pow(t, n - i) * Math.pow(u, i) * Math.pow(D, i / 2);
+                        if (i % 2 == 1)
+                            rad += choose(n, i) * Math.pow(t, n - i) * Math.pow(u, i) * Math.pow(D, (i - 1) / 2);
+                    }
+                }
+                Point finalSol = new Point(whole * r + rad * s * D, whole * s + r * rad);
+                if (solutions.size() < sols && finalSol.x > 0 && finalSol.y > 0) solutions.add(finalSol);
+            }
+            n++;
+        }
+        ArrayList<Point> finalSolutions = new ArrayList<>(solutions);
+        finalSolutions.sort(new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                return Integer.compare(o1.x, o2.x);
+            }
+        });
+        return finalSolutions;
     }
 }
