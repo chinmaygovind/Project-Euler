@@ -551,12 +551,7 @@ public class Numbers {
             n++;
         }
         ArrayList<Point> finalSolutions = new ArrayList<>(solutions);
-        finalSolutions.sort(new Comparator<Point>() {
-            @Override
-            public int compare(Point o1, Point o2) {
-                return Integer.compare(o1.x, o2.x);
-            }
-        });
+        finalSolutions.sort(Comparator.comparingInt(o -> o.x));
         return finalSolutions;
     }
 }
