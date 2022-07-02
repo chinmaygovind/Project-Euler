@@ -68,7 +68,7 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
             denominator *= -1;
             numerator *= -1;
         }
-        this.value = numerator / (double) denominator;
+        this.value = numerator / denominator;
     }
 
     @Override

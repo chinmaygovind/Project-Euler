@@ -477,6 +477,7 @@ public class Numbers {
      * @param sols, an integer, representing how many solutions to find for the equation.
      * @return an ArrayList of Points, representing the fundamental solutions of the equation.
      */
+    @Deprecated
     public static ArrayList<Point> solveGeneralPellEquation(int D, int N, int sols) {
         Point resolvent = solvePellEquation(D);
         int t = resolvent.x;
