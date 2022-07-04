@@ -99,4 +99,15 @@ public class Geometry {
         convexHull.remove(convexHull.size()-1);
         return convexHull;
     }
+
+    /**
+     * Gets the angle of a side of a triangle, c, using Law of Cosine.
+     * @param a A double, representing a side of the triangle.
+     * @param b A double, representing a side of the triangle.
+     * @param c A double, representing the side of the triangle opposite the angle being solved for.
+     * @return A double, representing the angle opposite side C in radians.
+     */
+    public static double angleLOC(double a, double b, double c) {
+        return Math.acos((a*a+b*b-c*c)/(2*a*b));
+    }
 }

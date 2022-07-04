@@ -338,6 +338,8 @@ public class Numbers {
     public static void generateCachedPrimes(int limit){
         cachedPrimes = generatePrimes(limit);
     }
+    public static ArrayList<Integer> getCachedPrimes() { return cachedPrimes; }
+    public static void setCachedPrimes(ArrayList<Integer> newCache) { cachedPrimes = newCache; }
 
     /**
      * Checks if a number is Pandigital. (e.g. 51342 is 1-5 pandigital, since it has all digits from 1-5.)
@@ -554,5 +556,56 @@ public class Numbers {
         ArrayList<Point> finalSolutions = new ArrayList<>(solutions);
         finalSolutions.sort(Comparator.comparingInt(o -> o.x));
         return finalSolutions;
+    }
+
+    /**
+     * Turns "janky" doubles (e.g. 2.3999999999995) into cleaner ones (e.g. 2.4)
+     * @param x The double to be dejankified.
+     * @return A double, representing the input with jank removed.
+     */
+    public static double dejankify(double x) {
+        String m = String.valueOf(x);
+        String up = String.valueOf(Math.ulp(x) + x);
+        String down = String.valueOf(Math.ulp(x) - x);
+        if (up.length() < m.length()) return Math.ulp(x) + x;
+        if (down.length() < m.length()) return Math.ulp(x) - x;
+        return x;
+    }
+
+    public static long[] xgcd(long a, long b){
+        long[] retvals={0,0,0};
+        long aa[]={1,0}, bb[]={0,1}, q=0;
+        while(true) {
+            q = a / b; a = a % b;
+            aa[0] = aa[0] - q*aa[1];  bb[0] = bb[0] - q*bb[1];
+            if (a == 0) {
+                retvals[0] = b; retvals[1] = aa[1]; retvals[2] = bb[1];
+                return retvals;
+            };
+            q = b / a; b = b % a;
+            aa[1] = aa[1] - q*aa[0];  bb[1] = bb[1] - q*bb[0];
+            if (b == 0) {
+                retvals[0] = a; retvals[1] = aa[0]; retvals[2] = bb[0];
+                return retvals;
+            };
+        }
+    }
+
+    public static BigInteger[] xgcd(BigInteger a, BigInteger b) {
+        BigInteger x = a, y=b;
+        BigInteger[] qrem;
+        BigInteger[] result = new BigInteger[3];
+        BigInteger x0 = BigInteger.ONE, x1 = BigInteger.ZERO;
+        BigInteger y0 = BigInteger.ZERO, y1 = BigInteger.ONE;
+        while (true){
+            qrem = x.divideAndRemainder(y); x = qrem[1];
+            x0 = x0.subtract(y0.multiply(qrem[0]));
+            x1 = x1.subtract(y1.multiply(qrem[0]));
+            if (x.equals(BigInteger.ZERO)) {result[0]=y; result[1]=y0; result[2]=y1; return result;};
+            qrem = y.divideAndRemainder(x); y = qrem[1];
+            y0 = y0.subtract(x0.multiply(qrem[0]));
+            y1 = y1.subtract(x1.multiply(qrem[0]));
+            if (y.equals(BigInteger.ZERO)) {result[0]=x; result[1]=x0; result[2]=x1; return result;};
+        }
     }
 }
