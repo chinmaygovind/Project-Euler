@@ -41,7 +41,6 @@ public class Problem143 {
                 }
             }
         }
-        System.out.println("Found working p, q");
         Set<Integer> pqr = new HashSet<>();
         for (int p : workingPQ.keySet()) {
             for (int q : workingPQ.get(p)) {
