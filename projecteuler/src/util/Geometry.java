@@ -110,4 +110,5 @@ public class Geometry {
     public static double angleLOC(double a, double b, double c) {
         return Math.acos((a*a+b*b-c*c)/(2*a*b));
     }
+
 }

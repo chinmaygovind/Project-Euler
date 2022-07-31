@@ -31,6 +31,14 @@ public class Coordinate {
         return Math.sqrt((c.x-x)*(c.x-x) + (c.y-y)*(c.y-y));
     }
 
+    public Coordinate add(Coordinate c) {
+        return new Coordinate(getX() + c.getX(), getY() + c.getY());
+    }
+
+    public Coordinate multiply(double f) {
+        return new Coordinate(getX() * f, getY() * f);
+    }
+
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";

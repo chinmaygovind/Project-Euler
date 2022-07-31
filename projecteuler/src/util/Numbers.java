@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * A utility class with lots of useful math methods.
@@ -307,15 +309,26 @@ public class Numbers {
      * @return An ArrayList of Longs of the primes.
      */
     public static ArrayList<Integer> generatePrimes(int limit){
-        ArrayList<Integer> primes = new ArrayList<>();
-        for (int i = 0; i <= limit; i++){
-            if (isPrime(i)){
-                primes.add(i);
+        boolean[] nums = new boolean[limit];
+        for (int i = 2; i < limit; i++) nums[i] = true;
+        int p = 2;
+        int n = p;
+        while (p*p < limit) {
+            if (n*p >= limit) {
+                p++;
+                while (!nums[p] && p*p < limit) p++;
+                if (p*p >= limit) {
+                    ArrayList<Integer> primes = new ArrayList<>();
+                    for (int i = 2; i < limit; i++)
+                        if (nums[i]) primes.add(i);
+                    return primes;
+                }
+                n = p;
             }
+            nums[n*p] = false;
+            n++;
         }
-        return primes;
-
-
+        return new ArrayList<>();
     }
 
     public static ArrayList<ArrayList<Integer>> generateUniqueFactorizations(int limit){
