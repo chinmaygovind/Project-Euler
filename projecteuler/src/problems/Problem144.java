@@ -7,15 +7,16 @@ import util.Sets;
 
 import java.util.*;
 
-//Investigating the Torricelli Point of a Triangle.
+//Investigating Multiple Reflections of a Laser Beam.
 public class Problem144 {
+    //desmos used for sanity testing: https://www.desmos.com/calculator/sek5nlcrgp
     private static ArrayList<Coordinate> points = new ArrayList<>();
     public static void main(String[] args) {
         points.add(new Coordinate(0, 10.1));
         points.add(new Coordinate(1.4, -9.6));
         while (points.get(points.size()-1).getY() < 9.99997999998) {
             points.add(nextPoint(points.get(points.size()-2), points.get(points.size()-1)));
-            System.out.println(points.get(points.size()-1));
+            //System.out.println(points.get(points.size()-1));
         }
         System.out.println("The number of times the laser bounces inside the cell is: " + (points.size()-2));
     }

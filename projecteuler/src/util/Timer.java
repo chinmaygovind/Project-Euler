@@ -7,9 +7,9 @@ public class Timer {
     private static long timer;
     public static void main(String[] args){
         long startTime = System.nanoTime();
-        //2523ms for 100mill
+        //2523ms for primes up to 100mill
         //1bil exceeds mem
-        Problem143.main(new String[]{});
+        Problem145.main(new String[]{});
         System.out.println("Runtime: " + (System.nanoTime() - startTime)/1000000.0 + "ms");
     }
 
