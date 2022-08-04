@@ -153,7 +153,6 @@ public class Numbers {
         }
         return true;
     }
-
     /**
      * Gets prime factors of a number. (e.g. 6 -> 2, 3)
      * @param num Number to get prime factors of.

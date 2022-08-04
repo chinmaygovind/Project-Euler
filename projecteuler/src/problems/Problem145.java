@@ -5,7 +5,7 @@ import util.Numbers;
 
 import java.util.ArrayList;
 
-//Investigating Multiple Reflections of a Laser Beam.
+//How many reversible numbers are there below one-billion?
 public class Problem145 {
     private static int reversibles = 0;
     public static void main(String[] args) {
