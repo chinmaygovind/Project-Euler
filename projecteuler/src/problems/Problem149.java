@@ -2,7 +2,6 @@ package problems;
 
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 //Searching for a Maximum-Sum Subsequence.
 public class Problem149 {

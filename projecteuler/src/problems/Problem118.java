@@ -1,9 +1,11 @@
 package problems;
 
 
-import util.Numbers;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
-import java.util.*;
+import util.Numbers;
 
 //Pandigital Prime Sets.
 public class Problem118 {
@@ -18,7 +20,6 @@ public class Problem118 {
         }
         //System.out.println(subdivide(254789631, new ArrayList<>()));
         //System.out.println(sets);
-        List<HashSet<Integer>> tempSets = new ArrayList<>(sets);
         System.out.println("The number of pandigital distinct sets containing only primes is: " + sets.size());
     }
 

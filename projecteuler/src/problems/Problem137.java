@@ -1,12 +1,6 @@
 package problems;
 
-import util.Numbers;
-
-import java.awt.*;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 //Fibonacci Golden Nuggets.
 public class Problem137 {

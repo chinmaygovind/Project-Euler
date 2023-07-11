@@ -1,12 +1,9 @@
 package problems;
 
 
-import util.Geometry;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 
 //Rectangles in Cross-Hatched Grids.

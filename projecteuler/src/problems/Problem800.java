@@ -1,10 +1,9 @@
 package problems;
 
 
-import util.Numbers;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
+
+import util.Numbers;
 
 //k^x * x^k = n
 //x = 1/log(k) * k * W(1/k * log(k) * n^(1/k))

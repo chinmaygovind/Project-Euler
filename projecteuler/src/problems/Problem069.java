@@ -2,8 +2,6 @@ package problems;
 
 import util.Numbers;
 
-import java.util.*;
-
 //Totient Maximum.
 public class Problem069 {
     private static int answer = 0;

@@ -1,13 +1,8 @@
 package problems;
 
-import util.Files;
-import util.Numbers;
-import util.Sets;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Scanner;
+
+import util.Numbers;
 
 //Diophantine Reciprocals I.
 public class Problem108 {

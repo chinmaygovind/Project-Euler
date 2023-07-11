@@ -1,12 +1,15 @@
 package problems;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import util.Coordinate;
 import util.Geometry;
 import util.Numbers;
 import util.Sets;
-
-import java.awt.*;
-import java.util.*;
 
 //Investigating the Torricelli Point of a Triangle.
 public class Problem143 {

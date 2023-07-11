@@ -1,12 +1,13 @@
 package util;
 
-import java.awt.*;
-import java.math.BigDecimal;
+import java.awt.Point;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * A utility class with lots of useful math methods.
@@ -501,7 +502,7 @@ public class Numbers {
         //TODO: fix n^2 < D case
         if (N * N > D) {
             int L1 = (N > 0 ? 0 : (int) Math.sqrt(-N/ (double) D));
-            int L2 = (int) Math.ceil(Math.sqrt((N > 0 ? 1 : -1) * N * (t + (N > 0 ? -1 : + 1)) / (2.0 * D)));
+            //int L2 = (int) Math.ceil(Math.sqrt((N > 0 ? 1 : -1) * N * (t + (N > 0 ? -1 : + 1)) / (2.0 * D)));
             for (int y = L1; y <= D*N; y++) {//+3 for good luck
                 int x2 = D * y * y + N;
                 if (Math.sqrt(x2) == Math.floor(Math.sqrt(x2))) {

@@ -1,10 +1,8 @@
 package problems;
 
-import util.Numbers;
-
-import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 //Monopoly Odds.
 public class Problem084 {

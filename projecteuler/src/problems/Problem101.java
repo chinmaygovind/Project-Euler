@@ -1,19 +1,13 @@
 package problems;
 
-import util.Fraction;
-import util.Matrix;
-import util.Numbers;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
+import util.Matrix;
 
 //Optimum Polynomial.
 public class Problem101 {
     private static List<Double> terms = new ArrayList<>();
-    private static double FITsum = 0;
     private static long answer = 0;
 
     public static void main(String[] args) {

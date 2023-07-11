@@ -1,22 +1,19 @@
 package problems;
 
 
-import util.Timer;
-
 import java.util.ArrayList;
 import java.util.List;
 
-//Paper Sheets of Standard Sizes: An Expected-value Problem.
+//A Preference for A5.
 public class Problem151 {
-    private static int batches = 0;
-    private static final int start = 16;
+    //they changed the name of this problem??? hah
     public static void main(String[] args) {
-        ArrayList<Integer> papers = new ArrayList<>(List.of(16));
+        ArrayList<Integer> papers = new ArrayList<>(List.of(4));
         System.out.println(pick(papers, 0));
-        Timer.beep();
+        
     }
     public static double pick(ArrayList<Integer> papers, int depth) {
-        //System.out.println(papers + " | " + depth);
+        System.out.println(papers + " | " + depth);
         double total = 0;
         for (int picked : papers) {
             ArrayList<Integer> temp = new ArrayList<>(papers);

@@ -6,8 +6,8 @@ import java.util.List;
 
 //Square Digit Chains.
 public class Problem092 {
-    private static HashSet<Integer> to1 = new HashSet();
-    private static HashSet<Integer> to89 = new HashSet();
+    private static HashSet<Integer> to1 = new HashSet<>();
+    private static HashSet<Integer> to89 = new HashSet<>();
     private static int limit = 10000000;
     public static void main(String[] args) {
         to1.add(1);

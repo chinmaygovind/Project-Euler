@@ -1,11 +1,10 @@
 package problems;
 
-import util.Numbers;
-
-import java.awt.*;
-import java.math.BigDecimal;
+import java.awt.Point;
 import java.math.BigInteger;
 import java.util.ArrayList;
+
+import util.Numbers;
 
 //Modified Fibonacci Golden Nuggets.
 public class Problem140 {

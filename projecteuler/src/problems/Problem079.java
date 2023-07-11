@@ -1,11 +1,10 @@
 package problems;
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
+
+import util.Numbers;
 
 //Passcode Derivation.
 public class Problem079 {

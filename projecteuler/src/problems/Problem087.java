@@ -1,11 +1,9 @@
 package problems;
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
+
+import util.Numbers;
 
 //Prime Power Triples.
 public class Problem087 {

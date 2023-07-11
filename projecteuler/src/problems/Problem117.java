@@ -1,7 +1,6 @@
 package problems;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 //Red, Green and Blue Tiles.

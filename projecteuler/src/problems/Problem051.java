@@ -1,15 +1,13 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import util.Numbers;
 
 //Prime Digit Replacements.
 public class Problem051 {
     private static ArrayList<Integer> primes = Numbers.generatePrimes(1000000);
-    private static ArrayList<Integer> fails = new ArrayList<>();
     public static void main(String[] args){
         int i = 0;
         while (!checkNum(primes.get(i))){

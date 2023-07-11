@@ -1,11 +1,10 @@
 package problems;
 
-import util.Numbers;
-import util.Sets;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
+import util.Numbers;
 
 //Investigating a Prime Pattern.
 public class Problem146 {

@@ -1,11 +1,11 @@
 package problems;
 
 
-import util.Timer;
-import util.Numbers;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import util.Numbers;
 
 //Totient Permutations.
 public class Problem070 {

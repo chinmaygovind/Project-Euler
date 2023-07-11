@@ -1,11 +1,13 @@
 package problems;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+
 import util.Files;
 import util.Sets;
-import util.Timer;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 //Special Subset Sums: Testing
 public class Problem105 {

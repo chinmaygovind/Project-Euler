@@ -1,11 +1,11 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import util.Numbers;
 
 //Same Differences.
 public class Problem135 {
@@ -23,7 +23,6 @@ public class Problem135 {
 
     public static int findSolutions(int n) {
         ArrayList<Integer> factors = Numbers.getFactors(n, true);
-        int solutions = 0;
         HashSet<Point> sols = new HashSet<>();
         for (int i = 0; i < factors.size(); i++) {
             int a = factors.get(i);

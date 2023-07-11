@@ -1,10 +1,9 @@
 package problems;
 
 
-import util.Numbers;
-import util.Timer;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 //Singular Integer Right Triangles.
 public class Problem075 {

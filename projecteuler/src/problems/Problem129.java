@@ -1,10 +1,5 @@
 package problems;
 
-
-import util.Numbers;
-
-import java.math.BigInteger;
-
 //Repunit Divisibility.
 public class Problem129 {
     private static final int LIMIT = 1000000;

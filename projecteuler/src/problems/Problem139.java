@@ -1,10 +1,6 @@
 package problems;
 
 import util.Numbers;
-import util.Sets;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
 
 //Pythagorean Tiles.
 public class Problem139 {

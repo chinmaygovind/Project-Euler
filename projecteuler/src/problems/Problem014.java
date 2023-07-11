@@ -1,8 +1,5 @@
 package problems;
 
-
-import java.util.ArrayList;
-
 public class Problem014 {
     private static int longestChainStarter = 0;
     private static int longestChainLength = 0;

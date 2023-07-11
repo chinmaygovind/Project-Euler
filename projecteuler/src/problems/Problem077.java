@@ -1,10 +1,9 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import util.Numbers;
 
 //Prime Summations.
 public class Problem077 {

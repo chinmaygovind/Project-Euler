@@ -3,8 +3,6 @@ package problems;
 
 import util.Numbers;
 
-import java.util.ArrayList;
-
 //Pandigital Multiples.
 public class Problem038 {
     private static long largestPandigital = 0;

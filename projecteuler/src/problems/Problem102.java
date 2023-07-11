@@ -1,15 +1,14 @@
 package problems;
 
-import util.Files;
-import util.Geometry;
-import util.Matrix;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import util.Files;
+import util.Geometry;
 
 //Triangle Containment.
 public class Problem102 {

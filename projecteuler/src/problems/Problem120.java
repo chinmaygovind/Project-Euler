@@ -1,12 +1,9 @@
 package problems;
 
 
-import util.Sets;
-
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+
+import util.Sets;
 
 //Square Remainders.
 public class Problem120 {

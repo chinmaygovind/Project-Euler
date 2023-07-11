@@ -1,8 +1,7 @@
 package problems;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Stream;

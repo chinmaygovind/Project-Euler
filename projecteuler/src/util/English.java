@@ -1,6 +1,5 @@
 package util;
 
-import java.lang.Integer;
 public class English {
     public static String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

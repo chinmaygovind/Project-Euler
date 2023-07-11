@@ -1,10 +1,6 @@
 package problems;
 
-import util.Numbers;
-import util.Timer;
-
 import java.util.HashMap;
-import java.util.List;
 
 //Coin Partitions.
 public class Problem078 {

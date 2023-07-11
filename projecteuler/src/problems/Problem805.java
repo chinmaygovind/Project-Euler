@@ -1,18 +1,14 @@
 package problems;
 
 
-import util.Files;
-import util.Fraction;
-import util.Numbers;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.MathContext;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.stream.Collectors;
+
+import util.Files;
+import util.Numbers;
 
 
 //Shifted Multiples.
@@ -165,7 +161,6 @@ public class Problem805 {
             }
             if (F0 < n) return BigInteger.ZERO;
             //okay we have F
-            long invF = Numbers.xgcd(F0, mod)[1]%mod;
             //return BigInteger.TEN.modPow(BigInteger.valueOf(period(F0)), bigMod).subtract(BigInteger.ONE).multiply(BigInteger.valueOf(invF));
             return BigInteger.TEN.pow(period(F0)).subtract(BigInteger.ONE).divide(BigInteger.valueOf(F0)).mod(bigMod);
         } else {

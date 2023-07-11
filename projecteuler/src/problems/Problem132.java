@@ -1,11 +1,10 @@
 package problems;
 
 
+import java.util.ArrayList;
+
 import util.Numbers;
 import util.Sets;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
 
 //Large Repunit Factors.
 public class Problem132 {

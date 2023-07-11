@@ -3,9 +3,6 @@ package problems;
 
 import util.Numbers;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-
 //Spiral Primes.
 public class Problem058 {
     private static int diagonals = 1;

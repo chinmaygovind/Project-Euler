@@ -2,15 +2,9 @@ package problems;
 
 
 import util.Fraction;
-import util.Numbers;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 //Disc Game Prize Fund.
 public class Problem121 {
-    private static final int turns = 4;
     public static void main(String[] args) {
         //System.out.println(wins);
         System.out.println("The maximum allocated payout for the disc game is: " + (long) winProbability(15).reciprocal().value);

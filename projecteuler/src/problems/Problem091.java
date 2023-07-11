@@ -1,12 +1,5 @@
 package problems;
 
-import util.Numbers;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-
 //Right Triangles With Integer Coordinates.
 public class Problem091 {
     private static int workingTriangles = 0;

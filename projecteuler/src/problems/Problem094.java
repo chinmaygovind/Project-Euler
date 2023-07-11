@@ -1,12 +1,6 @@
 package problems;
 
-import util.Geometry;
-import util.Numbers;
-
-import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 
 //Almost Equilateral Triangles.
 public class Problem094 {

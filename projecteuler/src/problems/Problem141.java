@@ -1,12 +1,12 @@
 package problems;
 
-import util.Fraction;
-import util.Numbers;
-import util.Sets;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+
+import util.Fraction;
+import util.Numbers;
+import util.Sets;
 
 //Investigating Progressive Numbers, n, which are also Square.
 public class Problem141 {
@@ -45,7 +45,6 @@ public class Problem141 {
                 }
             }
             //binary mask through square factors
-            findA:
             for (int b = 0; b < Math.pow(2, squareFactors.size()); b++) {
                 Fraction a = new Fraction(1, 1);
                 for (int i = 0; i < squareFactors.size(); i++) {

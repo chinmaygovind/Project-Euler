@@ -1,11 +1,5 @@
 package problems;
 
-
-import util.Numbers;
-
-import java.awt.*;
-import java.util.*;
-
 //Ordered Fractions.
 public class Problem071 {
     private static final double limit = 3/7.0;

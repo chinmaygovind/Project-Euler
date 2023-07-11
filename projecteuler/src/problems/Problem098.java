@@ -1,8 +1,11 @@
 package problems;
 
-import util.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
 
-import java.util.*;
+import util.Files;
 
 //Anagramic Squares.
 public class Problem098 {
@@ -10,7 +13,8 @@ public class Problem098 {
     private static final Scanner fileReader = Files.fileScanner("/problem098.txt");
     private static HashMap<String, ArrayList<String>> wordMap = new HashMap<>();
     private static int maxSquare = 0;
-    private static ArrayList<String> poopyPile = new ArrayList<>();
+    //private static ArrayList<String> poopyPile = new ArrayList<>();
+    //note 7/11/2023: i was cleaning up imports and found the arraylist poopypile. i don't know what it was supposed to do. oh well.
     public static void main(String[] args) {
         for (String rawWord : fileReader.nextLine().split(",")) {
             String nextWord = rawWord.substring(1, rawWord.length() - 1);
@@ -54,7 +58,6 @@ public class Problem098 {
                         }
                         if (working) {
                             for (String subword : wordMap.get(word)){
-                                boolean working2 = true;
                                 StringBuilder newSquare = new StringBuilder();
                                 for (char subchar : subword.toCharArray()){
                                     for (int digit = 0; digit < 10; digit++){

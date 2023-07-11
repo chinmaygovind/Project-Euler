@@ -3,12 +3,8 @@ package problems;
 
 import util.Numbers;
 
-import java.util.ArrayList;
-
 //Non-Bouncy Numbers.
 public class Problem113 {
-    private static int bouncies = 0;
-    private static double n = 1;
     public static void main(String[] args) {
         System.out.println("The amount of numbers below one googol that are not bouncy is: " + nonBounciesUpTo(100));
     }

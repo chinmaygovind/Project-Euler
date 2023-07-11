@@ -1,12 +1,10 @@
 package problems;
 
 
-import util.Numbers;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+
+import util.Numbers;
 
 //Ordered Radicals.
 public class Problem124 {

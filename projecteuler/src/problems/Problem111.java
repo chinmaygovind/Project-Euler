@@ -1,13 +1,12 @@
 package problems;
 
 
-import util.Numbers;
-import util.Sets;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
+
+import util.Numbers;
+import util.Sets;
 
 //Primes with Runs.
 public class Problem111 {

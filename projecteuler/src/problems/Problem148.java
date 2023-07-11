@@ -2,9 +2,6 @@ package problems;
 
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 //Exploring Pascal's Triangle.
 public class Problem148 {

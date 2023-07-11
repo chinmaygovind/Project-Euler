@@ -1,11 +1,9 @@
 package problems;
 
-import util.Coordinate;
-import util.Geometry;
-import util.Numbers;
-import util.Sets;
+import java.util.ArrayList;
 
-import java.util.*;
+import util.Coordinate;
+import util.Numbers;
 
 //Investigating Multiple Reflections of a Laser Beam.
 public class Problem144 {

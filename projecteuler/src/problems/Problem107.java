@@ -1,12 +1,11 @@
 package problems;
 
-import util.Files;
-import util.Sets;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
+
+import util.Files;
+import util.Sets;
 
 //Minimal Network.
 public class Problem107 {

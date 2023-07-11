@@ -1,8 +1,6 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
 
 //Number Spiral Diagonals.

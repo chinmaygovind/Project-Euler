@@ -11,7 +11,6 @@ public class Problem061 {
     private static ArrayList<ArrayList<Integer>> groups = new ArrayList<>();
     private static ArrayList<Integer> numbers = new ArrayList<>();
     private static HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
-    private static boolean foundSequence = false;
 
     public static void main(String[] args) {
         //load groups

@@ -1,14 +1,10 @@
 package problems;
 
-import java.awt.*;
-import java.util.HashSet;
-
 //Singleton Difference.
 public class Problem136 {
     private static int one = 0;
     private static final int LIMIT = 50000000;
     private static final int[] sols = new int[LIMIT];
-    private static final HashSet<Point> values = new HashSet<>();
     public static void main(String[] args) {
         for (int a = 1; a <= LIMIT; a++) {
             for (int b = 1; b <= LIMIT; b++) {

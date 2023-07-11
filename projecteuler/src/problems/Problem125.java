@@ -1,16 +1,14 @@
 package problems;
 
 
-import util.Numbers;
-import util.Sets;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import util.Numbers;
+import util.Sets;
+
 //Palindromic Sums.
 public class Problem125 {
-    private static final ArrayList<Point> radicals = new ArrayList<>();
     private static final int limit = 100000000;
     private static final int squareLimit = 10000;
     private static final HashSet<Long> palindromes = new HashSet<>();

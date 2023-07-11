@@ -1,10 +1,9 @@
 package problems;
 
-import util.Sets;
-
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+
+import util.Sets;
 
 //Special Isosceles Triangles.
 public class Problem138 {

@@ -1,13 +1,9 @@
 package problems;
 
 
-import util.Card;
-import util.Numbers;
-
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+
+import util.Numbers;
 
 //Lychrel Numbers.
 public class Problem055 {

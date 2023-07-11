@@ -1,9 +1,5 @@
 package problems;
 
-
-
-import java.util.ArrayList;
-
 //Champernowne's Constant.
 public class Problem040 {
     private static StringBuilder champernowne = new StringBuilder(".");

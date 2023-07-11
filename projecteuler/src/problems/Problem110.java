@@ -1,22 +1,16 @@
 package problems;
 
 
-import util.Numbers;
-import util.Timer;
-
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static problems.Problem108.countSolutions;
+import util.Numbers;
 
 //Diophantine Reciprocals II.
 public class Problem110 {
     //61261200 seems to be smallest one for 8000 solutions.
-    private static final int[] factors = new int[5000];
     private static int[] tempFactors;
     private static final ArrayList<Integer> primes = Numbers.generatePrimes(1000);
     private static BigInteger n = BigInteger.ONE;

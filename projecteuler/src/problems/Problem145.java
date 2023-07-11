@@ -1,10 +1,5 @@
 package problems;
 
-import util.Coordinate;
-import util.Numbers;
-
-import java.util.ArrayList;
-
 //How many reversible numbers are there below one-billion?
 public class Problem145 {
     private static int reversibles = 0;

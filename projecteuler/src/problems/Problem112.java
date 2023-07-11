@@ -1,13 +1,5 @@
 package problems;
 
-
-import util.Numbers;
-import util.Sets;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-
 //Bouncy Numbers.
 public class Problem112 {
     private static int bouncies = 0;

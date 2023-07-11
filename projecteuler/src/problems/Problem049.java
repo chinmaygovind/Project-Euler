@@ -1,13 +1,12 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
+
+import util.Numbers;
 
 //Prime Permutations
 public class Problem049 {
-    private static ArrayList<Integer> failed = new ArrayList<>();
     private static String answer = "notFound";
 
     public static void main(String[] args){

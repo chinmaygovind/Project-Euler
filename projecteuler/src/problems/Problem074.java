@@ -1,16 +1,14 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+
+import util.Numbers;
 
 //Digit Factorial Chains.
 public class Problem074 {
     private static int[] digitFactorials = new int[10];
-    private static HashMap<Integer, Integer> factorialSums = new HashMap<>();
     private static int length60loops = 0;
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++){

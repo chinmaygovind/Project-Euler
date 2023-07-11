@@ -1,11 +1,10 @@
 package problems;
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import util.Numbers;
 
 //Product-Sum Numbers.
 public class Problem088 {

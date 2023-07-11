@@ -1,10 +1,9 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
-import java.util.HashSet;
+
+import util.Numbers;
 
 //Counting Fractions in a Range.
 public class Problem073 {

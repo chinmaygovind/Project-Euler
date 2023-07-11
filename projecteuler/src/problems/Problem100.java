@@ -1,13 +1,7 @@
 package problems;
 
-import util.Files;
-
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 //Largest Exponential.
 public class Problem100 {

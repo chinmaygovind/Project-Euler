@@ -1,14 +1,13 @@
 package problems;
 
 
+import java.util.ArrayList;
+
 import util.Numbers;
 import util.Sets;
 
-import java.util.ArrayList;
-
 //Repunit Non-Factors.
 public class Problem133 {
-    private static final int TARGET = 1000000000;
     private static final ArrayList<Integer> primes = Numbers.generatePrimes(100000);
     private static final ArrayList<Long> nonfactors = new ArrayList<>();
 

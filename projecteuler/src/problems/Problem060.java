@@ -1,10 +1,10 @@
 package problems;
 
 
-import util.Numbers;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import util.Numbers;
 
 //Prime Pair Sets.
 public class Problem060 {
@@ -20,7 +20,7 @@ public class Problem060 {
             addNode(prime);
             //generate subsets to check
             ArrayList<Integer> potentialLinks = primeMap.get(prime);
-            for (Integer link : (ArrayList<Integer>) potentialLinks.clone()){
+            for (Integer link : new ArrayList<Integer>(potentialLinks)){
                 if (!primeMap.get(link).contains(prime)){
                     potentialLinks.remove(link);
                 }

@@ -1,9 +1,5 @@
 package problems;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 //Counting Rectangles.
 public class Problem085 {
     private static int closestSolution = 0;
