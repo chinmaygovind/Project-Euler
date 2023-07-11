@@ -64,10 +64,9 @@ public class Sets {
      * @param strings String array to be converted.
      * @return A List of integers from the String array.
      */
-    public static List<Integer> stringArrayToIntList(String[] strings){
+    public static List<Integer> stringArrayToIntList(String[] strings) {
         return Arrays.stream(strings).mapToInt(Integer::parseInt)
                 .boxed()
                 .collect(Collectors.toList());
     }
-
 }
