@@ -621,4 +621,22 @@ public class Numbers {
             if (y.equals(BigInteger.ZERO)) {result[0]=x; result[1]=x0; result[2]=x1; return result;};
         }
     }
+
+    public static double arithmeticMean(double ... args) {
+        double sum = 0;
+        for (double x : args) sum += x;
+        return sum / args.length;
+    }
+
+    public static double geometricMean(double ... args) {
+        double product = 1;
+        for (double x : args) product *= x;
+        return Math.pow(product, 1.0 / args.length);
+    }
+
+    public static double harmonicMean(double ... args) {
+        double sum = 0;
+        for (double x : args) sum += 1/x;
+        return 1/sum;
+    }
 }

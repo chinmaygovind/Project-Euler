@@ -13,6 +13,7 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
 
     public static final Fraction ZERO = new Fraction(0, 1);
     public static final Fraction ONE = new Fraction(1, 1);
+    public static final Fraction ONE_HALF = new Fraction(1, 2);
 
     public Fraction(long numerator, long denominator) {
         this.numerator = numerator;
@@ -23,6 +24,13 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
     public Fraction(double numerator, double denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
+        this.value = this.numerator / this.denominator;
+    }
+
+    //i regret making the class use all void methods, silly chinmay
+    public Fraction(Fraction f) {
+        this.numerator = f.numerator;
+        this.denominator = f.denominator;
         this.value = this.numerator / this.denominator;
     }
 
