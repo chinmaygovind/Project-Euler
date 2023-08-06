@@ -66,6 +66,7 @@ public class Numbers {
      * @return BigInteger of result, since result can get very large.
      */
     public static BigInteger factorial(long num){
+        if (num == 0) return BigInteger.ONE;
         BigInteger total = BigInteger.ONE;
         long temp = num;
         while (temp != 1){
@@ -81,7 +82,7 @@ public class Numbers {
      * @return Long of result.
      */
     public static long factorial(int num){
-        if (num == 1 || num == 0) return 1;
+        if (num <= 1) return 1;
         return factorial(num - 1) * num;
     }
 

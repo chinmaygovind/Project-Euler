@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 //Sums of Square Reciprocals.
-//TODO: finish this, try the naive search method?
 public class Problem152 {
     //i am a generating function demon
     private static BigInteger FACTORIAL_80_SQUARED = BigInteger.ONE;

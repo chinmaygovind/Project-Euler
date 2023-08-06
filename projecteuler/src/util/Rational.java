@@ -22,8 +22,8 @@ public class Rational implements Comparable<Rational>, Cloneable {
         simplify();
     }
 
-    public Rational(int intValue) {
-        this.numerator = intValue;
+    public Rational(long integer) {
+        this.numerator = integer;
         this.denominator = 1;
         this.value = this.numerator / this.denominator;
         simplify();

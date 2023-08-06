@@ -6,7 +6,8 @@ import javax.management.RuntimeErrorException;
 
 //Counting Digits.
 public class Problem156 {
-    
+    //i am so good at math
+    //(my inflated confidence is probably going to die very soon)
     private static final long SEARCH_LIMIT = 1_000_000_000_000L;
     public static void main(String[] args) {
         //recon
@@ -62,7 +63,7 @@ public class Problem156 {
                 else if (Math.abs(f(n, d) - n) < 1000) {
                     n++;
                 } else {
-                    n += Math.abs(f(n, d) - n)/100;
+                    n += Math.abs(f(n, d) - n)/16;
                 }
             }
         }
@@ -71,7 +72,7 @@ public class Problem156 {
         for (Long sol : solutions) {
             total += sol;
         }
-        System.out.println(total);
+        System.out.println("The sum of all solutions for f(n, d) = n for d from 1 to 9 is: " + total);
     }
 
     public static void test() {
