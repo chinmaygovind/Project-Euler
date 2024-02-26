@@ -14,7 +14,7 @@ public class Problem163 {
         //sides: y = 6n, y = 3x + 6n, y = -3x + 6n
         //thru: y = 2x + 4n, y = -2x + 4n, x = n
 
-        int N = 1;
+        int N = 2;
         HashSet<Intersection> intersections = new HashSet<>();
         for (int row = 0; row < N; row++) {
             for (int col = 0; col < N - row; col++) {
@@ -40,7 +40,7 @@ public class Problem163 {
                 }
             }
             System.out.println(intersectionList.get(i) + ": " + graph.get(intersectionList.get(i)));
-            System.out.println(intersectionList.get(i) + ": " + Arrays.toString(intersectionList.get(i).lines));
+            //System.out.println(intersectionList.get(i) + ": " + Arrays.toString(intersectionList.get(i).lines));
         }
     }
 
@@ -57,8 +57,8 @@ class Intersection {
     public Intersection(int x, int y) {
         this.x = x;
         this.y = y;
-        this.lines[0] = x;
-        this.lines[1] = y;
+        this.lines[0] = x%4 == 2 ? x : -1;
+        this.lines[1] = y%6 == 0 ? y : -1;
         this.lines[2] = (y - 3 * x)%12 == 0 ? y - 3 * x : -1;
         this.lines[3] = (y + 3 * x)%12 == 0 ? y + 3 * x : -1;
         this.lines[4] = (y - x)%4 == 0 ? y - x : -1;
@@ -67,7 +67,7 @@ class Intersection {
 
     public boolean connectsTo(Intersection o) {
         for (int i = 0; i < 6; i++) {
-            if (lines[i] == o.lines[i]) return true;
+            if (lines[i] != -1 && lines[i] == o.lines[i]) return true;
         }
         return false;
     }
