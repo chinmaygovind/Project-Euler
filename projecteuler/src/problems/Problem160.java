@@ -18,12 +18,12 @@ public class Problem160 {
     private static final BigInteger lastSevenMod = BigInteger.valueOf(10_000_000);
     private static final BigInteger bigMod = BigInteger.TEN.pow(250);
     private static final BigInteger[] bigInts = new BigInteger[1_000_000];
+
+
     public static void main(String[] args) {
-        for (int i = 0; i < 1_000_000; i++) {
-            bigInts[i] = BigInteger.valueOf(i);
-        }
-        System.out.println("computed value = " + fastF(6));
-        System.out.println("true value = " + trueF(1_000_000));
+        //F(10^12) = F(10^12 / 5) = F(10^12 / 25) ... = F(10^12 / 5^8) = F(2560000)
+        //cheese
+        System.out.println("The last 5 digits of 10^12! are: " + trueF(2_560_000));
 
     }
 

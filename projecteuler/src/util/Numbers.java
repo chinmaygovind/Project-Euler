@@ -93,6 +93,7 @@ public class Numbers {
      * @return The total number of ways to choose k objects from n objects.
      */
     public static long choose(int n, int k) {
+        if (k == 0) return 1;
         long total = 1;
         for (int m = Math.max(n - k, k) + 1; m <= n; m++) {
             total *= m;
