@@ -29,7 +29,7 @@ public class Problem163 {
                 }
             }
         }
-        System.out.println("All points: " + intersections);
+        //System.out.println("All points: " + intersections);
         ArrayList<Intersection> intersectionList = new ArrayList<>(intersections);
         HashMap<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 0; i < intersectionList.size(); i++) {
