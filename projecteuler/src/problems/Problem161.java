@@ -5,45 +5,28 @@ import java.awt.geom.Point2D;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Objects;
 
 //Triominoes.
 public class Problem161 {
 
     private static final int N = 6;
-    private static long[][] boardValues = new long[2*N][2*N];
+    private static final HashMap<String, Long> patterns = new HashMap<>();
+
 
     public static void main(String[] args) {
-        //TODO: not cheese by OEIS. will return later.
-        System.out.println("The number of ways to fill a 9x12 board is: 20574308184277971");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                boardValues[i][j] = -1;
-            }
-        }
-        for (int sum = 12; sum <= 2*N; sum++){
-            for (int x = 1; x < sum; x++) {
-                int y = 9;
-                if (x > y) {
-                    boardValues[y - 1][x - 1] = boardValues[x - 1][y - 1];//use symmetry
-                } else if (x * y % 3 != 0) {
-                    boardValues[y - 1][x - 1] = 0;
-                } else {
-                    boardValues[y - 1][x - 1] = fillBoard(new Board(x, y));
-                }
-                System.out.printf("x: %d, y: %d, val: %d\n", x, y, boardValues[y - 1][x - 1]);
-            }
-        }
-        System.out.println(Arrays.deepToString(boardValues).replace("],", "]\n"));
+        //all it took was memoization
+        //gosh dang it
+        System.out.println("The number of ways to tile a 9x12 board with trinominoes is: " + fillBoard(new Board(9, 12)));
     }
 
     public static long fillBoard(Board b) {
+        //System.out.println(b + "\n" + b.getPattern());
+        if (patterns.containsKey(b.getPattern())) return patterns.get(b.getPattern());
         long solutions = 0;
         Point firstEmpty = b.firstEmpty();
         Point rect = b.emptyRectangle();
-        if (!Objects.isNull(rect) && boardValues[rect.y-1][rect.x-1] > 0) {
-            return boardValues[rect.y][rect.x];
-        }
         if (!Objects.isNull(firstEmpty)) {
             for (Tile t : Tile.baseTiles) {
                 //System.out.println("adding " + t + " at " + firstEmpty);
@@ -57,6 +40,7 @@ public class Problem161 {
             //System.out.println(b);
             solutions++;
         }
+        patterns.put(b.getPattern(), solutions);
         return solutions;
 
     }
@@ -132,6 +116,17 @@ class Board {
         return new Point(width, height);
     }
 
+    public String getPattern() {
+        StringBuilder s = new StringBuilder();
+        for (int row = 0; row < this.height; row++) {
+            for (int col = 0; col < this.width; col++) {
+                if (points[row][col]) s.append(1);
+                else s.append(0);
+            }
+        }
+        return s.toString();
+    }
+
     public String toString() {
         int[][] points = new int[height][width];
         int i = 1;
@@ -149,13 +144,13 @@ class Tile {
     private Point[] points = new Point[3];
     private Point origin;
 
-    private static Tile L1 = new Tile(new Point(0, 0), new Point(0, 1), new Point(1, 1));//L
-    private static Tile L2 = new Tile(new Point(0, 0), new Point(0, 1), new Point(1, 0));//Γ
-    private static Tile L3 = new Tile(new Point(0, 0), new Point(1, 0), new Point(1, 1));//7
-    private static Tile L4 = new Tile(new Point(0, 0), new Point(0, 1), new Point(-1, 1));//⅃
+    private static final Tile L1 = new Tile(new Point(0, 0), new Point(0, 1), new Point(1, 1));//L
+    private static final Tile L2 = new Tile(new Point(0, 0), new Point(0, 1), new Point(1, 0));//Γ
+    private static final Tile L3 = new Tile(new Point(0, 0), new Point(1, 0), new Point(1, 1));//7
+    private static final Tile L4 = new Tile(new Point(0, 0), new Point(0, 1), new Point(-1, 1));//⅃
 
-    private static Tile I1 = new Tile(new Point(0, 0), new Point(0, 1), new Point(0, 2));//|
-    private static Tile I2 = new Tile(new Point(0, 0), new Point(1, 0), new Point(2, 0));//-
+    private static final Tile I1 = new Tile(new Point(0, 0), new Point(0, 1), new Point(0, 2));//|
+    private static final Tile I2 = new Tile(new Point(0, 0), new Point(1, 0), new Point(2, 0));//-
 
     public static Tile[] baseTiles = new Tile[]{L1, L2, L3, L4, I1, I2};
 
