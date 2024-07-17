@@ -1,7 +1,5 @@
 package problems;
 
-import util.Numbers;
-
 import java.util.*;
 
 //Cross-hatched Triangles.
@@ -16,21 +14,21 @@ public class Problem163 {
         //sides: y = 6n, y = 3x + 6n, y = -3x + 6n
         //thru: y = 2x + 4n, y = -2x + 4n, x = n
 
-        HashSet<Intersection> intersections = new HashSet<>();
+        HashSet<Intersection163> intersections = new HashSet<>();
         for (int row = 0; row < N; row++) {
             for (int col = 0; col < N - row; col++) {
                 int startX = 4 * col + 2 * row;
                 int startY = row * 6;
-                intersections.add(new Intersection(startX, startY));
+                intersections.add(new Intersection163(startX, startY));
                 int[][] points = {{2, 0}, {4, 0}, {1, 3}, {3, 3}, {2, 6}, {2, 2}};
                 for (int[] p : points) {
-                    intersections.add(new Intersection(startX + p[0], startY + p[1]));
-                    if (row > 0) intersections.add(new Intersection(startX + p[0], startY - p[1]));
+                    intersections.add(new Intersection163(startX + p[0], startY + p[1]));
+                    if (row > 0) intersections.add(new Intersection163(startX + p[0], startY - p[1]));
                 }
             }
         }
         //System.out.println("All points: " + intersections);
-        ArrayList<Intersection> intersectionList = new ArrayList<>(intersections);
+        ArrayList<Intersection163> intersectionList = new ArrayList<>(intersections);
         HashMap<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 0; i < intersectionList.size(); i++) {
             graph.put(i, new ArrayList<>());
@@ -58,7 +56,7 @@ public class Problem163 {
             for (int b : graph.get(a)) {
                 for (int c : graph.get(b)) {
                     if (graph.get(c).contains(a) &&
-                            !Intersection.areCollinear(
+                            !Intersection163.areCollinear(
                                     intersectionList.get(a),
                                     intersectionList.get(b),
                                     intersectionList.get(c)
@@ -77,7 +75,7 @@ public class Problem163 {
 
 }
 
-class Intersection {
+class Intersection163 {
     public int x;
     public int y;
 
@@ -85,7 +83,7 @@ class Intersection {
     //sides: y = 6n, y = 3x + 12n, y = -3x + 12n
     //thru: y = x + 4n, y = -x + 4n, x = n
     public int[] lines = new int[6];
-    public Intersection(int x, int y) {
+    public Intersection163(int x, int y) {
         this.x = x;
         this.y = y;
         this.lines[0] = x%2 == 0 ? x : -1;
@@ -96,7 +94,7 @@ class Intersection {
         this.lines[5] = (y + x)%4 == 0 ? y + x : -1;
     }
 
-    public boolean connectsTo(Intersection o) {
+    public boolean connectsTo(Intersection163 o) {
         for (int i = 0; i < 6; i++) {
             if (lines[i] != -1 && lines[i] == o.lines[i]) return true;
         }
@@ -122,11 +120,11 @@ class Intersection {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        final Intersection o = (Intersection) obj;
+        final Intersection163 o = (Intersection163) obj;
         return x == o.x && y == o.y;
     }
 
-    public static boolean areCollinear(Intersection a, Intersection b, Intersection c) {
+    public static boolean areCollinear(Intersection163 a, Intersection163 b, Intersection163 c) {
         for (int i = 0; i < 6; i++) {
             if (a.lines[i] != -1 && a.lines[i] == b.lines[i] && a.lines[i] == c.lines[i]) return true;
         }
