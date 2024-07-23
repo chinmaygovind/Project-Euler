@@ -1,6 +1,7 @@
 package util;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 /**
  * A fraction class, to represent a fraction with a numerator and denominator.
@@ -82,6 +83,19 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
     @Override
     public int compareTo(Fraction f) {
         return Double.compare(this.value, f.value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return Double.compare(numerator, fraction.numerator) == 0 && Double.compare(denominator, fraction.denominator) == 0 && Double.compare(value, fraction.value) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator, value);
     }
 
     public String toString() {

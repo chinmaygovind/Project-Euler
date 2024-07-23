@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//Sums of Powers of Two
+//Sums of Powers of Two.
 public class Problem169 {
 
     public static HashMap<BigInteger, long[]> cache = new HashMap<>();
