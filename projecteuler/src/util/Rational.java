@@ -62,13 +62,13 @@ public class Rational implements Comparable<Rational>, Cloneable {
 
     private void simplify() {
         double GCF = Numbers.GCF(Math.min(numerator, denominator), Math.max(numerator, denominator));
-        numerator /= GCF;
-        denominator /= GCF;
+        numerator /= (long) GCF;
+        denominator /= (long) GCF;
         if (denominator < 0){
             denominator *= -1;
             numerator *= -1;
         }
-        this.value = numerator / denominator;
+        this.value = (double) numerator / denominator;
     }
 
     @Override
@@ -89,9 +89,7 @@ public class Rational implements Comparable<Rational>, Cloneable {
     @Override
     public boolean equals(Object obj) {
         if (obj.getClass() == this.getClass()) {
-            if (((Rational) obj).numerator == this.numerator && ((Rational) obj).denominator == this.denominator) {
-                return  true;
-            }
+            return ((Rational) obj).numerator == this.numerator && ((Rational) obj).denominator == this.denominator;
         }
         return false;
     }
