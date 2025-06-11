@@ -71,7 +71,7 @@ public class Problem165 {
             }
         }
         System.out.println("The number of distinct true intersection poitns among the 500 line segments is: " + intersections.size());
-    
+
     }
 }
 

@@ -71,6 +71,10 @@ public class Rational implements Comparable<Rational>, Cloneable {
         this.value = (double) numerator / denominator;
     }
 
+    public boolean isInteger() {
+        return denominator == 1;
+    }
+
     @Override
     public int compareTo(Rational f) {
         return Double.compare(this.value, f.value);
