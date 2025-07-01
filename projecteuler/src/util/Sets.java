@@ -38,6 +38,17 @@ public class Sets {
     }
 
     /**
+     * Take the product of a list of numbers.
+     * @param l The list to take the product of.
+     * @return The product of the list of numbers.
+     */
+    public static long productLongs(List<Long> l){
+        long prod = 1;
+        for (Long i : l) prod *= i;
+        return prod;
+    }
+
+    /**
      * Find the max value of a list of integers.
      * @param l List to find the max of.
      * @return The maximum integer in the list.

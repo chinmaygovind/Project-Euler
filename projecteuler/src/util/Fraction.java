@@ -70,7 +70,7 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
     }
 
     private void simplify() {
-        double GCF = Numbers.GCF(Math.min(numerator, denominator), Math.max(numerator, denominator));
+        double GCF = Numbers.gcd(Math.min(numerator, denominator), Math.max(numerator, denominator));
         numerator /= GCF;
         denominator /= GCF;
         if (denominator < 0){

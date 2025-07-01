@@ -2,10 +2,8 @@ package problems;
 
 
 import util.Numbers;
-import util.Sets;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 //LCM.
@@ -34,7 +32,7 @@ public class Problem858 {
         ArrayList<Long> smaller = GHelper(n - 1);
         ArrayList<Long> newList = new ArrayList<>();
         for (long el : smaller) {
-            newList.add((n * el) / Numbers.GCF(n, el));
+            newList.add((n * el) / Numbers.gcd(n, el));
         }
         newList.addAll(smaller);
         return newList;

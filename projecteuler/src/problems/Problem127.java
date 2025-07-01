@@ -45,7 +45,7 @@ public class Problem127 {
                     if (!reducible.get(a) && !reducible.get(b)) continue;
                     if (a + b >= limit) break;
                     //if (!reducible.get(b) || !reducible.get(a + b)) continue;
-                    if (Numbers.GCF(a, b) == 1 &&
+                    if (Numbers.gcd(a, b) == 1 &&
                             rad(a + b) * rad(a) * rad(b)
                                     < a + b) {
                         //if (!reducible.get(a) && !reducible.get(b)) System.out.println(a + ", " + b + ", " + (a + b));

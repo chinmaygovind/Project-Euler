@@ -61,7 +61,7 @@ public class Rational implements Comparable<Rational>, Cloneable {
     }
 
     private void simplify() {
-        double GCF = Numbers.GCF(Math.min(numerator, denominator), Math.max(numerator, denominator));
+        double GCF = Numbers.gcd(Math.min(numerator, denominator), Math.max(numerator, denominator));
         numerator /= (long) GCF;
         denominator /= (long) GCF;
         if (denominator < 0){

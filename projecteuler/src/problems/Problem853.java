@@ -64,7 +64,7 @@ public class Problem853 {
                                                 pisanoCache.get((long) Math.pow(61, sixtyones)),
                                                 pisanoCache.get((long) Math.pow(2521, biggies))};
                                         double pN = 1;
-                                        for (long i : contributions) pN *= (double) i / Numbers.GCF(i, pN);
+                                        for (long i : contributions) pN *= (double) i / Numbers.gcd(i, pN);
                                         if (pN == 120) solutions.add((long) n);
                                     }
                                 }

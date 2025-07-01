@@ -65,7 +65,7 @@ public class Problem153 {
         for (long a = 1; a <= SQRT_LIMIT; a++) {
             //if (a%10 == 0) System.out.printf("a: %d\n", a);
             for (long b = 1; b <= a; b++) {
-                if (Numbers.GCF(a, b) != 1) continue;
+                if (Numbers.gcd(a, b) != 1) continue;
                 long norm = a * a + b * b;//we know that if a + bi is a factor, a - bi is also a factor.
                 long contribution = 0;
                 int k = 1;
@@ -108,7 +108,7 @@ public class Problem153 {
             //if (a%1000 == 0) System.out.printf("a: %d\n", a);
             for (long  b = 1; b <= limit/2; b++) {
                 long norm = a * a + b * b;//we know that if a + bi is a factor, a - bi is also a factor.
-                long adjustedNorm = norm / Numbers.GCF(a, b);
+                long adjustedNorm = norm / Numbers.gcd(a, b);
                 //System.out.printf("now considering %d + %di, which goes into multiples of %d\n", a, b, adjustedNorm);
                 //so, (a + bi)(a - bi) = a^2 + b^2 is a factor. 
                 //so, all multiples of a * a + b * b have a + bi and a - bi as a factor.

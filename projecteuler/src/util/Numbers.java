@@ -246,28 +246,28 @@ public class Numbers {
      * @param b The smaller of the two integers to take the GCF of.
      * @return The GCF of a and b.
      */
-    public static int GCF(int a, int b){
-        return b == 0 ? a : GCF(b, a % b);
+    public static int gcd(int a, int b){
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     /**
-     * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
-     * @param a The greater of the two integers to take the GCF of.
-     * @param b The smaller of the two integers to take the GCF of.
-     * @return The GCF of a and b.
+     * Greatest Common Divisor. Finds the greatest common divisor between two numbers, recursively.
+     * @param a The greater of the two integers to take the GCD of.
+     * @param b The smaller of the two integers to take the GCD of.
+     * @return The GCD of a and b.
      */
-    public static long GCF(long a, long b){
-        return b == 0 ? a : GCF(b, a % b);
+    public static long gcd(long a, long b){
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     /**
-     * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
-     * @param a The greater of the two integers to take the GCF of.
-     * @param b The smaller of the two integers to take the GCF of.
-     * @return The GCF of a and b.
+     * Greatest Common Divisor. Finds the greatest common divisor between two numbers, recursively.
+     * @param a The greater of the two integers to take the GCD of.
+     * @param b The smaller of the two integers to take the GCD of.
+     * @return The GCD of a and b.
      */
-    public static double GCF(double a, double b){
-        return b == 0 ? a : GCF(b, a % b);
+    public static double gcd(double a, double b){
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     /**
@@ -284,7 +284,8 @@ public class Numbers {
     }
 
     /**
-     * Partition function. Returns number of unique ways to partition a number. Uses the method described here: https://en.wikipedia.org/wiki/Partition_function_(number_theory)#Recurrence_relations
+     * Partition function. Returns number of unique ways to partition a number.
+     * Uses the method described here: https://en.wikipedia.org/wiki/Partition_function_(number_theory)#Recurrence_relations
      * @param num Number to be checked.
      * @return The number of unique ways to partition num.
      */

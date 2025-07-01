@@ -14,7 +14,7 @@ public class Problem139 {
     public static void main(String[] args) {
         for (long n = 1; n < LIMIT; n++) {
             for (long m = n + 1; 2 * m * (m + n) <= LIMIT; m+=2) {
-                if (Numbers.GCF(m, n) != 1) continue;
+                if (Numbers.gcd(m, n) != 1) continue;
                 long a = m * m - n * n;
                 long b = 2 * m * n;
                 long c = m * m + n * n;

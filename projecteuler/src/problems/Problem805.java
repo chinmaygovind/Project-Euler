@@ -33,7 +33,7 @@ public class Problem805 {
         long sum = 0;
         for (int u = 1; u <= M; u++) {
             for (int v = 1; v <= M; v++) {
-                if (Numbers.GCF(u, v) != 1) continue;
+                if (Numbers.gcd(u, v) != 1) continue;
                 sum = (sum + N(u*u*u, v*v*v))%mod;
                 //long optimizedN = N(u*u*u, v*v*v);
                 //BigInteger rawN = trueN(u*u*u, v*v*v);
@@ -89,7 +89,7 @@ public class Problem805 {
 
         } else {
             int F0 = s * 10 - n;
-            while (Numbers.GCF(10, F0) != 1 && F0 > 0) {
+            while (Numbers.gcd(10, F0) != 1 && F0 > 0) {
                 if (F0%2 == 0) F0 /= 2;
                 if (F0%5 == 0) F0 /= 5;
             }
@@ -155,7 +155,7 @@ public class Problem805 {
         //integral multiplier
         if (s == 1) {
             long F0 = 10 - n;
-            while (Numbers.GCF(10, F0) != 1 && F0 > 0) {
+            while (Numbers.gcd(10, F0) != 1 && F0 > 0) {
                 if (F0%2 == 0) F0 /= 2;
                 if (F0%5 == 0) F0 /= 5;
             }
@@ -165,7 +165,7 @@ public class Problem805 {
             return BigInteger.TEN.pow(period(F0)).subtract(BigInteger.ONE).divide(BigInteger.valueOf(F0)).mod(bigMod);
         } else {
             long F0 = s * 10 - n;
-            while (Numbers.GCF(10, F0) != 1 && F0 > 0) {
+            while (Numbers.gcd(10, F0) != 1 && F0 > 0) {
                 if (F0%2 == 0) F0 /= 2;
                 if (F0%5 == 0) F0 /= 5;
             }

@@ -70,6 +70,7 @@ public class Problem768 {
      *     last = time.time()
      *     print(n, counts.tolist(), dur)
      */
+    // actually also available here https://oeis.org/A103306/a103306.txt
     private static int[] f30 = new int[]{1, 0, 15, 10, 105, 126, 525, 780, 2055, 3060, 5955, 8010, 12285, 14190, 17715, 17190, 17715, 14190, 12285, 8010, 5955, 3060, 2055, 780, 525, 126, 105, 10, 15, 0, 1};
     private static List<Integer> primes = List.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
     private static HashMap<Integer, HashMap<Integer, Long>> cachedF = new HashMap<>();
@@ -94,7 +95,7 @@ public class Problem768 {
             }
         }
         **/
-
+        // convoluter
         int n = 90;
         for (int m = 0; m <= 20; m++) {
             System.out.printf("sneakyF(%d, %d): %d\n", n, m, sneakyF(n, m, 3));
