@@ -2,6 +2,7 @@ package problems;
 
 import util.Numbers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 // Matrix Sum.
@@ -25,12 +26,29 @@ public class Problem345 {
     };
 
     public static void main(String[] args) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.println(matrix[i][j]);
-            }
-        }
+        System.out.println("The matrix sum is: " + rightMatrixSum(0, new HashSet<>()));
     }
 
+    public static int rightMatrixSum(int col, HashSet<Integer> bannedRows) {
+        if (col == matrix.length - 1) {
+            int max = -1;
+            for (int row = 0; row < matrix.length; row++) {
+                if (!bannedRows.contains(row)) {
+                    max = Math.max(max, matrix[row][col]);
+                }
+            }
+            return max;
+        }
+        int max = -1;
+        for (int row = 0; row < matrix.length; row++) {
+            if (bannedRows.contains(row)) continue;
+            if (matrix[row][col] < 800) continue;
+            HashSet<Integer> newRows = new HashSet<>(bannedRows);
+            newRows.add(row);
+            int sum = matrix[row][col] + rightMatrixSum(col + 1, newRows);
+            max = Math.max(max, sum);
+        }
+        return max;
+    }
 
 }
