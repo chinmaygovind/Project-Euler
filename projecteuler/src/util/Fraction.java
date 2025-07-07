@@ -1,6 +1,10 @@
 package util;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -67,6 +71,26 @@ public class Fraction implements Comparable<Fraction>, Cloneable {
 
     public Fraction reciprocal(){
         return new Fraction(denominator, numerator);
+    }
+
+    public ArrayList<Integer> getContinuedFrac() {
+        ArrayList<Integer> cf = new ArrayList<>();
+        MathContext mc = new MathContext(100);
+        BigDecimal zeroIsh = BigDecimal.valueOf(0.1).pow(30);
+        BigDecimal newValue = new BigDecimal(numerator).divide(new BigDecimal(denominator), mc);
+        cf.add(newValue.intValue());
+        newValue = newValue.subtract(newValue.setScale(0, RoundingMode.FLOOR));
+//        System.out.println(newValue);
+        int i = 0;
+        while (newValue.abs().compareTo(zeroIsh) >= 0 && i < 10) {
+            newValue = BigDecimal.ONE.divide(newValue, mc).setScale(50, RoundingMode.HALF_DOWN);
+//            System.out.println(newValue);
+            cf.add(newValue.intValue());
+            newValue = newValue.subtract(newValue.setScale(0, RoundingMode.FLOOR));
+            i++;
+        }
+        return cf;
+
     }
 
     private void simplify() {

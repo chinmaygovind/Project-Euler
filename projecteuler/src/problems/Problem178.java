@@ -31,10 +31,10 @@ public class Problem178 {
                     }
                 }
             }
-//            for (int d = 1; d <= 9; d++) {
-//                //spawn fuckass numbers in
-//                stepNumbers[len][1 << d][d][0] = 1;
-//            }
+            for (int d = 1; d <= 9; d++) {
+                //spawn fuckass numbers in
+                stepNumbers[len][1 << d][d][0]++;
+            }
 //            System.out.println(Arrays.deepToString(stepNumbers[len]));
             long sum = 0;
             for (int d = 0; d <= 9; d++) {
