@@ -1,6 +1,10 @@
 package util;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * A Rational class, to represent a fraction with a numerator and denominator.
@@ -56,6 +60,13 @@ public class Rational implements Comparable<Rational>, Cloneable {
         return new Rational(this.numerator * factor.denominator, this.denominator * factor.numerator);
     }
 
+    public Rational pow(int exp) {
+        if (exp == 0) return Rational.ONE;
+        Rational newRational = new Rational((long) Math.pow(this.numerator, Math.abs(exp)), (long) Math.pow(this.denominator, Math.abs(exp)));
+        if (exp < 0) newRational = newRational.reciprocal();
+        return newRational;
+    }
+
     public Rational reciprocal(){
         return new Rational(denominator, numerator);
     }
@@ -82,6 +93,25 @@ public class Rational implements Comparable<Rational>, Cloneable {
 
     public String toString() {
         return (DecimalFormat.getInstance().format(numerator) + (denominator == 1 ? "" : "/" + DecimalFormat.getInstance().format(denominator))).replace(",", "");
+
+    }
+    public ArrayList<Integer> getContinuedFrac() {
+        ArrayList<Integer> cf = new ArrayList<>();
+        MathContext mc = new MathContext(100);
+        BigDecimal zeroIsh = BigDecimal.valueOf(0.1).pow(30);
+        BigDecimal newValue = new BigDecimal(numerator).divide(new BigDecimal(denominator), mc);
+        cf.add(newValue.intValue());
+        newValue = newValue.subtract(newValue.setScale(0, RoundingMode.FLOOR));
+//        System.out.println(newValue);
+        int i = 0;
+        while (newValue.abs().compareTo(zeroIsh) >= 0 && i < 10) {
+            newValue = BigDecimal.ONE.divide(newValue, mc).setScale(50, RoundingMode.HALF_DOWN);
+//            System.out.println(newValue);
+            cf.add(newValue.intValue());
+            newValue = newValue.subtract(newValue.setScale(0, RoundingMode.FLOOR));
+            i++;
+        }
+        return cf;
 
     }
 

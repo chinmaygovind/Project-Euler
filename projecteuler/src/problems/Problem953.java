@@ -7,7 +7,7 @@ import java.io.*;
 import java.math.BigInteger;
 import java.util.*;
 
-// Problem 953.
+// Factorisation Nim.
 public class Problem953 {
 
     // nim sum zero -> first loses

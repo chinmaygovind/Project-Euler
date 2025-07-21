@@ -3,11 +3,8 @@ package util;
 import java.awt.Point;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A utility class with lots of useful math methods.
@@ -158,11 +155,24 @@ public class Numbers {
     }
     /**
      * Gets prime factors of a number. (e.g. 6 -> 2, 3)
+     * Uses trial division.
      * @param num Number to get prime factors of.
      * @return ArrayList of integers containing all the prime factors.
      */
     public static ArrayList<Integer> getPrimeFactors(int num){
-        if (cachedPrimes.size() == 0 || cachedPrimes.get(cachedPrimes.size()-1) < num) generateCachedPrimes(num * 2);
+        if (num < 1_000_000) { // all prime factors can be found basically by trial division on primes < 1000
+            ArrayList<Integer> factors = new ArrayList<>();
+            for (int p : smallPrimes) {
+                while (num % p == 0) {
+                    factors.add(p);
+                    num /= p;
+                }
+                if (num == 1) break;
+            }
+            if (num > 1) factors.add(num);
+            return factors;
+        }
+        if (cachedPrimes.isEmpty() || cachedPrimes.getLast() < num) generateCachedPrimes(num * 2);
         ArrayList<Integer> primeFactors = new ArrayList<>();
         int temp = num;
         int divisor = 0;
@@ -179,6 +189,7 @@ public class Numbers {
 
     /**
      * Gets prime factors of a number using cached primes to save time. (e.g. 6 -> 2, 3)
+     * Uses trial division.
      * @param num Number to get prime factors of.
      * @param useCached A boolean that indicates to use the cached primes.
      * @return An ArrayList of Integers containing all the prime factors.
@@ -239,6 +250,169 @@ public class Numbers {
         }
         return factors;
     }
+
+
+    public static ArrayList<Integer> smallPrimes = new ArrayList<>(
+            List.of(
+                    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
+                    101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
+                    211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293,
+                    307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397,
+                    401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499,
+                    503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599,
+                    601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691,
+                    701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797,
+                    809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887,
+                    907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997
+            )
+    );
+    private static int PRIMALITY_CERTAINTY = 100;
+
+    /**
+     * Get prime factors of a long. Example: 12 -> [2, 2, 3]
+     * Uses pollard-rho algorithm.
+     * @param n Number to be factorized.
+     * @return An ArrayList of longs that are factors of the number.
+     */
+    public static ArrayList<Long> pollardRho(long n) {
+        if (n < 1000) {
+            return new ArrayList<>(
+                    getPrimeFactors((int) n).stream().map(Long::valueOf).collect(Collectors.toList())
+            );
+        }
+        // trial divide for primes < 1000
+        ArrayList<Long> primeFactors = new ArrayList<>();
+        for (int p : smallPrimes) {
+            while (n % p == 0) {
+                primeFactors.add((long) p);
+                n /= p;
+            }
+        }
+        if (n == 1) return primeFactors;
+        if (BigInteger.valueOf(n).isProbablePrime(PRIMALITY_CERTAINTY)) {
+            primeFactors.add(n);
+            return primeFactors;
+        }
+        boolean factored = false;
+        for (long x0 = 2; x0 < n && !factored; x0++) { // cursed
+            long x = (x0 * x0 + 1) % n;
+            long y = (x * x + 1) % n;
+            while (x != y) {
+                long gcd = Numbers.gcd(Math.abs(x - y), n);
+                if (gcd > 1) {
+                    primeFactors.addAll(pollardRho(gcd));
+                    long f = n / gcd;
+                    primeFactors.addAll(pollardRho(f));
+                    factored = true;
+                    break;
+                } else {
+                    x = (x * x + 1) % n;
+                    y = (y * y + 1) % n;
+                    y = (y * y + 1) % n; // advance y twice
+                }
+            }
+        }
+        primeFactors.sort(Long::compareTo);
+        return primeFactors;
+    }
+    /**
+     * Get all factors of a Long. Example: 12 -> [1, 2, 3, 4, 6]
+     * Relies on pollard-rho algorithm.
+     * @param n Long to be factorized.
+     * @return An ArrayList of longs that are factors of the number.
+     */
+    public static ArrayList<Long> getFactors(Long n) {
+        ArrayList<Long> primeFactors = pollardRho(n);
+        ArrayList<Long> factors = new ArrayList<>();
+        long lim = 1L << primeFactors.size();
+        for (long i = 0; i < lim; i++) {
+            long factor = 1;
+            long bitMask = 1;
+            for (int idx = 0; idx < primeFactors.size(); idx++) {
+                if ((i & bitMask) > 0) {
+                    factor *= primeFactors.get(idx);
+                }
+                bitMask <<= 1;
+            }
+            factors.add(factor);
+        }
+        return factors;
+    }
+
+
+    /**
+     * Get prime factors of a BigInteger. Example: 12 -> [2, 2, 3]
+     * Uses pollard-rho algorithm.
+     * @param n BigInteger to be factorized.
+     * @return An ArrayList of BigInteger that are prime factors of the number, with duplicates for prime powers.
+     */
+    public static ArrayList<BigInteger> pollardRho(BigInteger n) {
+        if (n.compareTo(BigInteger.valueOf(1000)) < 0) {
+            return getPrimeFactors(n.intValue()).stream().map(BigInteger::valueOf).collect(Collectors.toCollection(ArrayList::new));
+        }
+        if (n.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) < 0) {
+            return pollardRho(n.longValue()).stream().map(BigInteger::valueOf).collect(Collectors.toCollection(ArrayList::new));
+        }
+        // trial divide for primes < 1000
+        ArrayList<BigInteger> primeFactors = new ArrayList<>();
+        for (int p : smallPrimes) {
+            BigInteger bigP = BigInteger.valueOf(p);
+            while (n.mod(bigP).equals(BigInteger.ZERO)) {
+                primeFactors.add(bigP);
+                n = n.divide(bigP);
+            }
+        }
+        if (n.equals(BigInteger.ONE)) return primeFactors;
+        if (n.isProbablePrime(PRIMALITY_CERTAINTY)) {
+            primeFactors.add(n);
+            return primeFactors;
+        }
+        boolean factored = false;
+        for (BigInteger x0 = BigInteger.TWO; x0.compareTo(n) < 0 && !factored; x0 = x0.add(BigInteger.ONE)) { // cursed
+            BigInteger x = x0.multiply(x0).add(BigInteger.ONE).mod(n);
+            BigInteger y = x.multiply(x).add(BigInteger.ONE).mod(n);
+            while (!y.equals(x)) {
+                BigInteger gcd = x.subtract(y).abs().gcd(n);
+                if (gcd.compareTo(BigInteger.ONE) > 0) {
+                    primeFactors.addAll(pollardRho(gcd));
+                    primeFactors.addAll(pollardRho(n.divide(gcd)));
+                    factored = true;
+                    break;
+                } else {
+                    x = x.multiply(x).add(BigInteger.ONE).mod(n);
+                    y = y.multiply(y).add(BigInteger.ONE).mod(n);
+                    y = y.multiply(y).add(BigInteger.ONE).mod(n); // advance y twice
+                }
+            }
+        }
+        primeFactors.sort(BigInteger::compareTo);
+        return primeFactors;
+    }
+
+    /**
+     * Get all factors of a BigInteger. Example: 12 -> [1, 2, 3, 4, 6]
+     * Relies on pollard-rho algorithm.
+     * @param n BigInteger to be factorized.
+     * @return An ArrayList of BigInteger that are factors of the number.
+     */
+    public static ArrayList<BigInteger> getFactors(BigInteger n) {
+        ArrayList<BigInteger> primeFactors = pollardRho(n);
+        ArrayList<BigInteger> factors = new ArrayList<>();
+        BigInteger lim = BigInteger.ONE.shiftLeft(primeFactors.size());
+        for (BigInteger i = BigInteger.ZERO; i.compareTo(lim) < 0; i = i.add(BigInteger.ONE)) {
+            BigInteger factor = BigInteger.ONE;
+            BigInteger bitMask = BigInteger.ONE;
+            for (int idx = 0; idx < primeFactors.size(); idx++) {
+                if (i.and(bitMask).compareTo(BigInteger.ZERO) > 0) {
+                    factor = factor.multiply(primeFactors.get(idx));
+                }
+                bitMask = bitMask.shiftLeft(1);
+            }
+            factors.add(factor);
+        }
+        return factors;
+    }
+
 
     /**
      * Greatest Common Factor. Finds the greatest common factor between two numbers, recursively.
