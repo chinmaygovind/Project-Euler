@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Numbers {
     private static ArrayList<Integer> cachedPrimes = new ArrayList<>();
     private static HashMap<Integer, Integer> cachedPartitions = new HashMap<>();
+    public static DecimalFormat df8 = new DecimalFormat("#.########E0");
 
     /**
      * Generates prime cache up to a limit.
@@ -323,7 +324,7 @@ public class Numbers {
      */
     public static ArrayList<Long> getFactors(Long n) {
         ArrayList<Long> primeFactors = pollardRho(n);
-        ArrayList<Long> factors = new ArrayList<>();
+        HashSet<Long> factors = new HashSet<>();
         long lim = 1L << primeFactors.size();
         for (long i = 0; i < lim; i++) {
             long factor = 1;
@@ -336,7 +337,7 @@ public class Numbers {
             }
             factors.add(factor);
         }
-        return factors;
+        return new ArrayList<>(factors);
     }
 
 
@@ -397,7 +398,7 @@ public class Numbers {
      */
     public static ArrayList<BigInteger> getFactors(BigInteger n) {
         ArrayList<BigInteger> primeFactors = pollardRho(n);
-        ArrayList<BigInteger> factors = new ArrayList<>();
+        HashSet<BigInteger> factors = new HashSet<>();
         BigInteger lim = BigInteger.ONE.shiftLeft(primeFactors.size());
         for (BigInteger i = BigInteger.ZERO; i.compareTo(lim) < 0; i = i.add(BigInteger.ONE)) {
             BigInteger factor = BigInteger.ONE;
@@ -410,7 +411,7 @@ public class Numbers {
             }
             factors.add(factor);
         }
-        return factors;
+        return new ArrayList<>(factors);
     }
 
 

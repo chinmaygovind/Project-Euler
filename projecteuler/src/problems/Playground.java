@@ -7,18 +7,26 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 // Problem 954.
 public class Playground {
     public static void main(String[] args) {
-        System.out.println(Numbers.pollardRho(123049812304239L));
-        System.out.println(Numbers.getFactors(123049812304239L));
-        System.out.println(Numbers.pollardRho(new BigInteger("49213840123841232342987")));
-        System.out.println(Numbers.getFactors(new BigInteger("49213840123841232342987")));
+        double trials = 1_000_000;
+        double count = 0;
+        Random random = new Random();
+        for (int i = 0; i < trials; i++) {
+            HashSet<Integer> seen = new HashSet<>();
+            int next = 0;
+            while (!seen.contains(1000 - next)) {
+                seen.add(next);
+                next = random.nextInt(1000);
+            }
+            seen.add(next);
+            count += seen.size();
+        }
+        double eX = count / trials;
+        System.out.println(eX);
     }
 
 

@@ -6,7 +6,7 @@ import util.Rational;
 import java.math.BigInteger;
 import java.util.*;
 
-//Luxury Hampers.
+// Luxury Hampers.
 public class Problem236 {
     // first 80%er
     private static int[][] products = new int[][]{
